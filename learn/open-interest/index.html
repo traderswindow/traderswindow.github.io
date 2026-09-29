@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Interest Explained: How to Read It | Traders Window</title>
+<meta name="description" content="Open interest explained: how it differs from volume, the four price and open interest combinations, and what rising or falling OI tells a crypto trader.">
+<link rel="canonical" href="https://traderswindow.github.io/learn/open-interest/">
+<meta name="theme-color" content="#0d0d0d">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Traders Window">
+<meta property="og:title" content="Open Interest Explained: How to Read It | Traders Window">
+<meta property="og:description" content="Open interest explained: how it differs from volume, the four price and open interest combinations, and what rising or falling OI tells a crypto trader.">
+<meta property="og:url" content="https://traderswindow.github.io/learn/open-interest/">
+<meta property="og:image" content="https://traderswindow.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-256.png">
+<link rel="preload" href="/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What is open interest, and how do you read it with price?","description":"Open interest explained: how it differs from volume, the four price and open interest combinations, and what rising or falling OI tells a crypto trader.","datePublished":"2026-09-28","dateModified":"2026-09-28","author":{"@type":"Organization","name":"Traders Window"},"publisher":{"@type":"Organization","name":"Traders Window","logo":{"@type":"ImageObject","url":"https://traderswindow.github.io/img/icon-256.png"}},"image":"https://traderswindow.github.io/img/og.png","mainEntityOfPage":"https://traderswindow.github.io/learn/open-interest/"}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="menubar">
+  <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+  <nav aria-label="Main">
+    <a href="/#read">Reading the widget</a>
+    <a href="/#features">Features</a>
+    <a href="/learn/" aria-current="page">Learn</a>
+    <a href="/#faq">FAQ</a>
+  </nav>
+  <div class="tray"><span class="clock" aria-hidden="true"></span><a class="dl" href="/#download">Download</a></div>
+</header>
+<main id="main">
+
+<article class="article">
+  <div class="wrap">
+    <header>
+      <p class="crumbs"><a href="/learn/">Learn</a></p>
+      <h1>What is open interest, and how do you read it with price?</h1>
+      <p>Open interest counts the futures positions that are still open. Read together with price, it tells you whether a move is powered by new money or by traders heading for the exit.</p>
+    </header>
+    <div class="prose">
+<h2>Open interest is not volume</h2>
+<p>Volume counts every contract that changed hands. Open interest counts the contracts that are still open at a given moment. Every contract has a buyer and a seller, so open interest is not “how many longs” or “how many shorts”; it's how much leveraged exposure exists in total.</p>
+<ul>
+  <li>When a new buyer and a new seller open positions, open interest rises.</li>
+  <li>When both sides close, it falls.</li>
+  <li>When a position simply changes hands, it stays the same.</li>
+</ul>
+
+<h2>The four combinations</h2>
+<table>
+  <thead><tr><th>Price</th><th>Open interest</th><th>Usual reading</th></tr></thead>
+  <tbody>
+    <tr><td class="up">Up</td><td>Up</td><td>New longs are opening. The move has fuel, and new leverage to unwind if it turns.</td></tr>
+    <tr><td class="down">Down</td><td>Up</td><td>New shorts are opening. Active selling, with the risk of a squeeze if price turns up.</td></tr>
+    <tr><td class="up">Up</td><td>Down</td><td>Shorts are closing or being liquidated: a squeeze rather than fresh buying.</td></tr>
+    <tr><td class="down">Down</td><td>Down</td><td>Longs are closing or being liquidated: leverage leaving the market.</td></tr>
+  </tbody>
+</table>
+<p>These are tendencies, not rules. Open interest changes can come from hedging or arbitrage that has nothing to do with direction, so read them together with funding and liquidations.</p>
+
+<h2>Why the time window matters</h2>
+<p>Open interest drifts slowly most of the time. A change of a few percent within an hour on a large coin is significant, because it means a lot of leverage moved in a short time. That's why Traders Window looks at the last hour rather than the day.</p>
+
+<h2>Open interest in Traders Window</h2>
+<div class="callout">
+  <p><b>OI</b> under each coin is the change in open interest over the last hour. When it moves by more than 1.5%, a badge names the combination: <b>NEW LONGS</b>, <b>NEW SHORTS</b>, <b>SQUEEZE</b> or <b>LONGS OUT</b>. Click the badge in the app for the explanation.</p>
+</div>
+      <p class="muted" style="margin-top:2.5em">For information only, not financial advice.</p>
+      <p><a class="btn" href="https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download Traders Window for macOS</a></p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+        <p style="margin-top:12px;max-width:44ch">A free, private crypto price widget that floats over every app on your Mac.</p>
+      </div>
+      <div>
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="/learn/funding-rate/">Funding rate</a></li>
+          <li><a href="/learn/open-interest/">Open interest</a></li>
+          <li><a href="/learn/liquidations/">Liquidations</a></li>
+          <li><a href="/learn/crypto-price-alerts-mac/">Price alerts on Mac</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Traders Window</h2>
+        <ul>
+          <li><a href="/#download">Download for macOS</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          
+        </ul>
+      </div>
+    </div>
+    <p class="legal">© 2026 Traders Window. All rights reserved. For information only; nothing here or in the app is financial advice. Market data from Binance, Fear &amp; Greed from alternative.me, dominance from CoinPaprika. Traders Window is not affiliated with Binance or any exchange.</p>
+  </div>
+</footer>
+
+</body>
+</html>

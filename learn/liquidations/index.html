@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crypto Liquidations Explained | Traders Window</title>
+<meta name="description" content="How crypto futures liquidations work, why they cascade, what long and short liquidation data tells you, and how to watch your own liquidation distance.">
+<link rel="canonical" href="https://traderswindow.github.io/learn/liquidations/">
+<meta name="theme-color" content="#0d0d0d">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Traders Window">
+<meta property="og:title" content="Crypto Liquidations Explained | Traders Window">
+<meta property="og:description" content="How crypto futures liquidations work, why they cascade, what long and short liquidation data tells you, and how to watch your own liquidation distance.">
+<meta property="og:url" content="https://traderswindow.github.io/learn/liquidations/">
+<meta property="og:image" content="https://traderswindow.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-256.png">
+<link rel="preload" href="/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Crypto liquidations: what they are and how to read them","description":"How crypto futures liquidations work, why they cascade, what long and short liquidation data tells you, and how to watch your own liquidation distance.","datePublished":"2026-09-28","dateModified":"2026-09-28","author":{"@type":"Organization","name":"Traders Window"},"publisher":{"@type":"Organization","name":"Traders Window","logo":{"@type":"ImageObject","url":"https://traderswindow.github.io/img/icon-256.png"}},"image":"https://traderswindow.github.io/img/og.png","mainEntityOfPage":"https://traderswindow.github.io/learn/liquidations/"}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="menubar">
+  <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+  <nav aria-label="Main">
+    <a href="/#read">Reading the widget</a>
+    <a href="/#features">Features</a>
+    <a href="/learn/" aria-current="page">Learn</a>
+    <a href="/#faq">FAQ</a>
+  </nav>
+  <div class="tray"><span class="clock" aria-hidden="true"></span><a class="dl" href="/#download">Download</a></div>
+</header>
+<main id="main">
+
+<article class="article">
+  <div class="wrap">
+    <header>
+      <p class="crumbs"><a href="/learn/">Learn</a></p>
+      <h1>Crypto liquidations: what they are and how to read them</h1>
+      <p>A liquidation is the exchange closing a leveraged position because the trader's margin can no longer cover the loss. Big waves of them move the market.</p>
+    </header>
+    <div class="prose">
+<h2>How a liquidation happens</h2>
+<p>When you open a leveraged position, you put down margin as collateral. If the price moves against you far enough that your margin falls below the maintenance level, the exchange closes the position for you at market. That forced order is a liquidation.</p>
+<p>The higher the leverage, the smaller the move it takes. As a rough guide, a 10× position is liquidated after a move of a bit less than 10% against it, and a 50× position after a bit less than 2%.</p>
+
+<h2>Why liquidations cascade</h2>
+<p>A liquidated long is a forced sell; a liquidated short is a forced buy. When many traders use similar leverage at similar prices, one wave of forced orders pushes price into the next group's liquidation levels, and so on. That's how a normal pullback becomes a sharp wick in seconds.</p>
+
+<h2>Reading liquidation data</h2>
+<ul>
+  <li><b>Long liquidations</b> pile up in sharp drops, <b>short liquidations</b> in sharp rises.</li>
+  <li>A large spike often marks a local exhaustion point, because the forced sellers or buyers are now gone.</li>
+  <li>Market-wide totals over the last hour tell you whether the whole market is being flushed or just one coin.</li>
+</ul>
+<p>One caveat about Binance data: the public liquidation stream reports at most one liquidation per second for each contract, the largest one. Totals built from it are a floor, not the full amount.</p>
+
+<h2>Your own distance to liquidation</h2>
+<p>The number that matters most is how far the price can move before your position is closed. Distance in percent is simply the gap between the mark price and your liquidation price, divided by the mark price.</p>
+
+<h2>Liquidations in Traders Window</h2>
+<div class="callout">
+  <p>A <b>LIQ</b> badge appears on a coin when more than $100K is liquidated there in 5 minutes, with L or S for the side. The market row shows the last hour across all of Binance Futures. With a read-only account connected, each position shows its distance to liquidation, turning amber and then red as it gets close, with an urgent alert at your threshold.</p>
+</div>
+      <p class="muted" style="margin-top:2.5em">For information only, not financial advice.</p>
+      <p><a class="btn" href="https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download Traders Window for macOS</a></p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+        <p style="margin-top:12px;max-width:44ch">A free, private crypto price widget that floats over every app on your Mac.</p>
+      </div>
+      <div>
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="/learn/funding-rate/">Funding rate</a></li>
+          <li><a href="/learn/open-interest/">Open interest</a></li>
+          <li><a href="/learn/liquidations/">Liquidations</a></li>
+          <li><a href="/learn/crypto-price-alerts-mac/">Price alerts on Mac</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Traders Window</h2>
+        <ul>
+          <li><a href="/#download">Download for macOS</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          
+        </ul>
+      </div>
+    </div>
+    <p class="legal">© 2026 Traders Window. All rights reserved. For information only; nothing here or in the app is financial advice. Market data from Binance, Fear &amp; Greed from alternative.me, dominance from CoinPaprika. Traders Window is not affiliated with Binance or any exchange.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Traders Window: a floating crypto price widget for Mac</title>
+<meta name="description" content="A free, always-on-top crypto widget for macOS: live Binance prices, funding, open interest, liquidations and alerts you can't miss, over full-screen charts.">
+<link rel="canonical" href="https://traderswindow.github.io/">
+<meta name="theme-color" content="#0d0d0d">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Traders Window">
+<meta property="og:title" content="Traders Window: a floating crypto price widget for Mac">
+<meta property="og:description" content="A free, always-on-top crypto widget for macOS: live Binance prices, funding, open interest, liquidations and alerts you can't miss, over full-screen charts.">
+<meta property="og:url" content="https://traderswindow.github.io/">
+<meta property="og:image" content="https://traderswindow.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-256.png">
+<link rel="preload" href="/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Traders Window","operatingSystem":"macOS 13 or later","applicationCategory":"FinanceApplication","description":"A free always-on-top crypto price widget for Mac with live Binance prices, funding rates, open interest, liquidations and price alerts.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg","softwareVersion":"0.1.0","image":"https://traderswindow.github.io/img/og.png","url":"https://traderswindow.github.io/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Traders Window really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. No ads, no account, no trial, no paid tier. If it helps you, you can buy me a coffee, but you never have to."}},{"@type":"Question","name":"Can it trade or move my money?","acceptedAnswer":{"@type":"Answer","text":"No. Prices come from public market data. Connecting your Binance account is optional and only accepts a read-only API key: the app checks the key's permissions and refuses any key that can trade, withdraw or transfer. The key is stored in your Mac's Keychain and is only ever sent to Binance."}},{"@type":"Question","name":"Why does macOS warn me the first time I open it?","acceptedAnswer":{"@type":"Answer","text":"Traders Window is a free project and isn't signed with a paid Apple developer certificate, so macOS asks you to confirm once. Open System Settings → Privacy &amp; Security, scroll down and click Open Anyway. You only do this the first time."}},{"@type":"Question","name":"Does it collect any data about me?","acceptedAnswer":{"@type":"Answer","text":"No. There are no analytics, no accounts and no servers of ours in between. The app talks directly to Binance, alternative.me and CoinPaprika for market data, and to ntfy.sh only if you turn on phone alerts."}},{"@type":"Question","name":"Does it really stay on top of full-screen apps?","acceptedAnswer":{"@type":"Answer","text":"Yes. It floats over full-screen TradingView, browsers and exchange apps. Clicking it doesn't take focus away from your trading app, and ghost mode lets your clicks pass straight through."}},{"@type":"Question","name":"Which coins and exchanges does it support?","acceptedAnswer":{"@type":"Answer","text":"Any coin with a USDT pair on Binance, up to 8 at once. Futures data (funding, open interest, liquidations) appears for coins that have a Binance perpetual contract. Binance is the only data source for now."}},{"@type":"Question","name":"Does it work in the United States?","acceptedAnswer":{"@type":"Answer","text":"Binance.com restricts US users. Prices usually still load through Binance's public market-data mirror, but futures data may be unavailable."}},{"@type":"Question","name":"Is there a Windows version?","acceptedAnswer":{"@type":"Answer","text":"Not yet. Traders Window is macOS only for now."}},{"@type":"Question","name":"What do I need to run it?","acceptedAnswer":{"@type":"Answer","text":"A Mac with macOS 13 Ventura or later, on Apple silicon or Intel."}}]}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="menubar">
+  <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+  <nav aria-label="Main">
+    <a href="/#read">Reading the widget</a>
+    <a href="/#features">Features</a>
+    <a href="/learn/">Learn</a>
+    <a href="/#faq">FAQ</a>
+  </nav>
+  <div class="tray"><span class="clock" aria-hidden="true"></span><a class="dl" href="/#download">Download</a></div>
+</header>
+<main id="main">
+
+<section class="desk" aria-label="Live demo">
+  <canvas class="chart" aria-hidden="true"></canvas>
+  <div class="demo" tabindex="0" aria-label="Demo widget with the live Bitcoin price. Drag it, or use the arrow keys to move it.">
+    <div class="w">
+      <div class="top"><span class="dot"></span><span class="pair">BTC<small>/USDT</small></span><span class="src">…</span></div>
+      <div class="row1"><span class="price num">$—</span><span class="chg">··· %</span></div>
+      <canvas aria-hidden="true"></canvas>
+      <div class="stats"></div>
+    </div>
+    <p class="hint">Drag it anywhere.</p>
+  </div>
+  <div class="copy">
+    <h1>Your price stays on top.</h1>
+    <p class="lede">Traders Window is a tiny widget that floats over every app on your Mac, even full-screen charts, with live prices, funding, liquidations and alerts you can't miss.</p>
+    <div class="cta">
+      <a class="btn" href="https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download for macOS</a>
+      <span class="btn-note">Free, no account. macOS 13 or later.</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="read">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Everything a trader glances at, in 250 pixels</h2>
+      <p>Point at any item to see where it lives on the widget. In the app, click any number or badge and it explains itself.</p>
+    </div>
+    <div class="anatomy">
+      <figure class="specimen" data-boxes='{"W":250,"H":178,"status":[12,14,6,6],"session":[93.7,11,21.5,12],"age":[121.2,12.8,20.5,8.5],"price":[12,29,162.4,28],"change24":[180.4,38,58.6,16.5],"spark":[12,59,227,20],"delta":[12,82,227,3],"funding":[12,89,81.3,10],"oi":[109.6,89,43.4,10],"dayopen":[169.2,89,37.9,10],"vol":[12,104.3,50.3,12.5],"print":[65.3,104.3,45,12.5],"fng":[12,128.8,65,11.7],"dominance":[85,128.8,59.6,11.7],"marketliq":[12,141.4,124.7,11.7],"rule":[12,158.1,227,12.3]}'>
+        <div class="frame">
+          <img class="shot" src="/img/widget-full.png" width="375" height="267" alt="Traders Window showing Bitcoin at $83,880 with funding, open interest, volume and liquidation data">
+          <div class="hl" aria-hidden="true"></div>
+        </div>
+        <figcaption>Full mode, one coin. Badges only appear when something is unusual.</figcaption>
+      </figure>
+      <ul class="legend">
+      <li><button type="button" data-key="status">
+        <span class="key">●</span>
+        <span class="def"><b>Connection</b><span>Green is live. Amber means the price is a few seconds old; red means offline, and it reconnects on its own.</span></span>
+      </button></li>
+      <li><button type="button" data-key="session">
+        <span class="key">NY</span>
+        <span class="def"><b>Session</b><span>Which market is open: Asia, London or New York. When none is, you see the time to the next open.</span></span>
+      </button></li>
+      <li><button type="button" data-key="age">
+        <span class="key">0.3s</span>
+        <span class="def"><b>Data age</b><span>How old the price on screen is. You always know whether you can trust it.</span></span>
+      </button></li>
+      <li><button type="button" data-key="price">
+        <span class="key">$83,880</span>
+        <span class="def"><b>Price</b><span>Streams from Binance about once a second. It flashes green or red on every tick.</span></span>
+      </button></li>
+      <li><button type="button" data-key="change24">
+        <span class="key">▼ −1.02%</span>
+        <span class="def"><b>24-hour change</b><span>Replaced by the reason for an alert when one fires, until you dismiss it.</span></span>
+      </button></li>
+      <li><button type="button" data-key="spark">
+        <span class="key">〜</span>
+        <span class="def"><b>Mini chart</b><span>The last 20 prices, so you see the short-term direction at a glance.</span></span>
+      </button></li>
+      <li><button type="button" data-key="delta">
+        <span class="key">▬</span>
+        <span class="def"><b>Order flow</b><span>Aggressive buyers (green) against aggressive sellers (red) on futures, over 5 minutes.</span></span>
+      </button></li>
+      <li><button type="button" data-key="funding">
+        <span class="key">F</span>
+        <span class="def"><b>Funding rate</b><span>What longs and shorts pay each other, with a countdown to the next payment. Amber when extreme.</span> <a href="/learn/funding-rate/">Learn more</a></span>
+      </button></li>
+      <li><button type="button" data-key="oi">
+        <span class="key">OI</span>
+        <span class="def"><b>Open interest, 1 hour</b><span>Is new leverage coming in or leaving? Read with price, it tells you who is driving the move.</span> <a href="/learn/open-interest/">Learn more</a></span>
+      </button></li>
+      <li><button type="button" data-key="dayopen">
+        <span class="key">D</span>
+        <span class="def"><b>Daily open</b><span>Where price is against today's open, a level many traders watch.</span></span>
+      </button></li>
+      <li><button type="button" data-key="vol">
+        <span class="key">VOL ×2.4</span>
+        <span class="def"><b>Unusual volume</b><span>Only appears when this hour trades at least twice its usual volume.</span></span>
+      </button></li>
+      <li><button type="button" data-key="print">
+        <span class="key">▼ $1.6M</span>
+        <span class="def"><b>Large trade</b><span>A single trade over your threshold in the last minute, and which side took it.</span></span>
+      </button></li>
+      <li><button type="button" data-key="fng">
+        <span class="key">F&amp;G</span>
+        <span class="def"><b>Fear &amp; Greed</b><span>The market's mood from 0 to 100, next to Bitcoin dominance.</span></span>
+      </button></li>
+      <li><button type="button" data-key="marketliq">
+        <span class="key">Liq 1h</span>
+        <span class="def"><b>Market liquidations</b><span>How many longs and shorts were force-closed across Binance Futures in the last hour.</span> <a href="/learn/liquidations/">Learn more</a></span>
+      </button></li>
+      <li><button type="button" data-key="rule">
+        <span class="key">📌</span>
+        <span class="def"><b>Your rule of the day</b><span>One line you write for yourself, always in view.</span></span>
+      </button></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="wrap">
+    <div class="feature">
+      <div class="text">
+        <h2>Alerts you can't miss</h2>
+        <p>Phone notifications get buried. Traders Window puts the alert on the screen you're already looking at, and keeps at it until you notice.</p>
+        <ul>
+          <li>Set a move in dollars, percent or σ, the coin's own normal hourly swing, so 2σ means unusual for BTC and for a small cap alike.</li>
+          <li>The frame pulses and the row shows why: a $ move, a funding flip, a liquidation wave or unusual volume.</li>
+          <li>Each alert type has its own sound, repeated every 12 seconds until you dismiss it.</li>
+          <li>Away from the desk? Alerts can also reach your phone through the free ntfy app.</li>
+        </ul>
+      </div>
+      <div class="shots"><img class="shot pulse" src="/img/widget-alert.png" width="375" height="291" alt="An alert: the BTC row pulses green and shows the move since the reference price" loading="lazy"></div>
+    </div>
+
+    <div class="feature flip">
+      <div class="text">
+        <h2>Your risk, not just the price</h2>
+        <p>Connect Binance Futures with a read-only key and the widget watches your side of the trade too.</p>
+        <ul>
+          <li>Every open position with leverage, size, unrealized P&amp;L and how far it is from liquidation.</li>
+          <li>An urgent alert when a position gets close to its liquidation price.</li>
+          <li>A daily loss limit that turns the widget red when you hit it, a max number of trades, and a cooldown timer after a loss.</li>
+          <li>A rule of the day, always in view. Privacy mode blurs the amounts when you stream.</li>
+        </ul>
+      </div>
+      <div class="shots"><img class="shot" src="/img/widget-risk.png" width="375" height="413" alt="Positions with liquidation distance, today's result, a daily loss meter and a cooldown timer" loading="lazy"></div>
+    </div>
+
+    <div class="feature">
+      <div class="text">
+        <h2>Out of your way when you need the screen</h2>
+        <p>It lives on top of everything, so it has to know when to step back.</p>
+        <ul>
+          <li>Half transparent until your mouse comes near, then fully clear.</li>
+          <li>Compact mode shrinks it to one line per coin.</li>
+          <li>Ghost mode lets clicks pass straight through to the chart underneath. Click the ghost to bring it back.</li>
+          <li>Global shortcuts to hide it, switch size, dismiss alerts or blur amounts, without touching the mouse.</li>
+        </ul>
+      </div>
+      <div class="shots">
+        <img class="shot" src="/img/widget-list.png" width="375" height="372" alt="Three coins in full mode with funding and open interest under each" loading="lazy">
+        <img class="shot" src="/img/widget-compact.png" width="375" height="119" alt="Compact mode: one line per coin" loading="lazy">
+      </div>
+    </div>
+
+    <div class="principles">
+      <div><h3>Direct from the exchange</h3><p>Prices stream from Binance over WebSocket, not from a slow aggregator refreshing every few minutes.</p></div>
+      <div><h3>Nothing to sign up for</h3><p>No account, no email, no tracking. Your settings stay on your Mac.</p></div>
+      <div><h3>Read-only by design</h3><p>It can't place orders or withdraw, and it refuses any key that could.</p></div>
+      <div><h3>Light</h3><p>A native Mac app of a few megabytes, built in Rust. It won't slow your charts down.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="download">
+  <div class="wrap install">
+    <div class="dl-card">
+      <h2>Download Traders Window</h2>
+      <p class="req">Version 0.1.0 for macOS 13 Ventura or later, Apple silicon and Intel.</p>
+      <p><a class="btn" href="https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download for macOS</a></p>
+      <p class="why">It's free and isn't signed with a paid Apple certificate, so macOS asks you to confirm the first time you open it. Step 3 shows how.</p>
+    </div>
+    <div>
+      <h2 style="margin-bottom:24px">Install in a minute</h2>
+      <ol class="steps">
+        <li><div><b>Open the downloaded file</b><span>Double-click <span class="num">TradersWindow.dmg</span> in your Downloads folder.</span></div></li>
+        <li><div><b>Drag it to Applications</b><span>Drop the Traders Window icon onto the Applications folder.</span></div></li>
+        <li><div><b>Allow it once</b><span>Open it from Launchpad. If macOS says it can't verify the developer, go to System Settings → Privacy &amp; Security, scroll down and click Open Anyway.</span></div></li>
+        <li><div><b>Pick your coins</b><span>Hover the widget and click the gear. It appears in the top-right corner and remembers where you leave it.</span></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head"><h2>Questions</h2></div>
+    <div class="faq">
+      <details><summary>Is Traders Window really free?</summary><div><p>Yes. No ads, no account, no trial, no paid tier. If it helps you, you can buy me a coffee, but you never have to.</p></div></details>
+      <details><summary>Can it trade or move my money?</summary><div><p>No. Prices come from public market data. Connecting your Binance account is optional and only accepts a <b>read-only</b> API key: the app checks the key's permissions and refuses any key that can trade, withdraw or transfer. The key is stored in your Mac's Keychain and is only ever sent to Binance.</p></div></details>
+      <details><summary>Why does macOS warn me the first time I open it?</summary><div><p>Traders Window is a free project and isn't signed with a paid Apple developer certificate, so macOS asks you to confirm once. Open <b>System Settings → Privacy &amp; Security</b>, scroll down and click <b>Open Anyway</b>. You only do this the first time.</p></div></details>
+      <details><summary>Does it collect any data about me?</summary><div><p>No. There are no analytics, no accounts and no servers of ours in between. The app talks directly to Binance, alternative.me and CoinPaprika for market data, and to ntfy.sh only if you turn on phone alerts.</p></div></details>
+      <details><summary>Does it really stay on top of full-screen apps?</summary><div><p>Yes. It floats over full-screen TradingView, browsers and exchange apps. Clicking it doesn't take focus away from your trading app, and ghost mode lets your clicks pass straight through.</p></div></details>
+      <details><summary>Which coins and exchanges does it support?</summary><div><p>Any coin with a USDT pair on Binance, up to 8 at once. Futures data (funding, open interest, liquidations) appears for coins that have a Binance perpetual contract. Binance is the only data source for now.</p></div></details>
+      <details><summary>Does it work in the United States?</summary><div><p>Binance.com restricts US users. Prices usually still load through Binance's public market-data mirror, but futures data may be unavailable.</p></div></details>
+      <details><summary>Is there a Windows version?</summary><div><p>Not yet. Traders Window is macOS only for now.</p></div></details>
+      <details><summary>What do I need to run it?</summary><div><p>A Mac with macOS 13 Ventura or later, on Apple silicon or Intel.</p></div></details>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+        <p style="margin-top:12px;max-width:44ch">A free, private crypto price widget that floats over every app on your Mac.</p>
+      </div>
+      <div>
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="/learn/funding-rate/">Funding rate</a></li>
+          <li><a href="/learn/open-interest/">Open interest</a></li>
+          <li><a href="/learn/liquidations/">Liquidations</a></li>
+          <li><a href="/learn/crypto-price-alerts-mac/">Price alerts on Mac</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Traders Window</h2>
+        <ul>
+          <li><a href="/#download">Download for macOS</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          
+        </ul>
+      </div>
+    </div>
+    <p class="legal">© 2026 Traders Window. All rights reserved. For information only; nothing here or in the app is financial advice. Market data from Binance, Fear &amp; Greed from alternative.me, dominance from CoinPaprika. Traders Window is not affiliated with Binance or any exchange.</p>
+  </div>
+</footer>
+<script src="/js/demo.js" defer></script>
+</body>
+</html>

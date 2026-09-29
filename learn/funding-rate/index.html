@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What is the funding rate in crypto? | Traders Window</title>
+<meta name="description" content="What the funding rate on crypto perpetual futures is, who pays whom, how to read positive, negative and extreme funding, and what a funding flip means.">
+<link rel="canonical" href="https://traderswindow.github.io/learn/funding-rate/">
+<meta name="theme-color" content="#0d0d0d">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Traders Window">
+<meta property="og:title" content="What is the funding rate in crypto? | Traders Window">
+<meta property="og:description" content="What the funding rate on crypto perpetual futures is, who pays whom, how to read positive, negative and extreme funding, and what a funding flip means.">
+<meta property="og:url" content="https://traderswindow.github.io/learn/funding-rate/">
+<meta property="og:image" content="https://traderswindow.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-256.png">
+<link rel="preload" href="/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What is the funding rate in crypto?","description":"What the funding rate on crypto perpetual futures is, who pays whom, how to read positive, negative and extreme funding, and what a funding flip means.","datePublished":"2026-09-28","dateModified":"2026-09-28","author":{"@type":"Organization","name":"Traders Window"},"publisher":{"@type":"Organization","name":"Traders Window","logo":{"@type":"ImageObject","url":"https://traderswindow.github.io/img/icon-256.png"}},"image":"https://traderswindow.github.io/img/og.png","mainEntityOfPage":"https://traderswindow.github.io/learn/funding-rate/"}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="menubar">
+  <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+  <nav aria-label="Main">
+    <a href="/#read">Reading the widget</a>
+    <a href="/#features">Features</a>
+    <a href="/learn/" aria-current="page">Learn</a>
+    <a href="/#faq">FAQ</a>
+  </nav>
+  <div class="tray"><span class="clock" aria-hidden="true"></span><a class="dl" href="/#download">Download</a></div>
+</header>
+<main id="main">
+
+<article class="article">
+  <div class="wrap">
+    <header>
+      <p class="crumbs"><a href="/learn/">Learn</a></p>
+      <h1>What is the funding rate in crypto?</h1>
+      <p>The funding rate is the small payment that keeps perpetual futures close to the spot price. It also tells you which side of the market is crowded.</p>
+    </header>
+    <div class="prose">
+<h2>Why perpetual futures need funding</h2>
+<p>A regular futures contract has an expiry date, and on that date its price has to meet the spot price. Perpetual futures never expire, so exchanges use another mechanism to keep them anchored: every few hours, traders on one side pay traders on the other.</p>
+<p>On Binance most perpetual contracts settle funding every 8 hours, at 00:00, 08:00 and 16:00 UTC. Some contracts settle more often. You only pay or receive funding if you hold a position at the moment it settles.</p>
+
+<h2>Who pays whom</h2>
+<table>
+  <thead><tr><th>Funding</th><th>What happens</th><th>What it usually means</th></tr></thead>
+  <tbody>
+    <tr><td class="up">Positive</td><td>Longs pay shorts</td><td>Perpetuals trade above spot; more traders want to be long.</td></tr>
+    <tr><td class="down">Negative</td><td>Shorts pay longs</td><td>Perpetuals trade below spot; more traders want to be short.</td></tr>
+  </tbody>
+</table>
+<p>The payment is a percentage of your position size. At a funding rate of 0.01%, a $10,000 long pays $1 at each settlement, about $3 a day. At 0.1% it pays $10 each time, $30 a day, which adds up quickly with leverage.</p>
+
+<h2>How to read it</h2>
+<ul>
+  <li><b>Around +0.01%</b> is the neutral baseline on most Binance contracts. Nothing unusual.</li>
+  <li><b>Well above that</b> (0.05% and higher) means longs are paying a lot to stay in. Positioning is crowded, and a drop can trigger a wave of long liquidations.</li>
+  <li><b>Negative</b> funding in a rising market often means shorts are fighting the trend, which is the setup for a short squeeze.</li>
+  <li><b>A flip</b> from positive to negative, or back, is a change in sentiment on futures worth noticing.</li>
+</ul>
+<p>Funding describes positioning, not timing. Crowded trades can stay crowded for days. Treat extreme funding as a reason for caution, not as a signal to take the other side.</p>
+
+<h2>Funding in Traders Window</h2>
+<div class="callout">
+  <p>Under each coin, <b>F</b> shows the current funding rate and a countdown to the next settlement, for example <span class="num">F +0.0052% 5h18</span>. It turns amber above 0.05%. You can turn on an alert for when funding flips sign, with its own sound.</p>
+</div>
+      <p class="muted" style="margin-top:2.5em">For information only, not financial advice.</p>
+      <p><a class="btn" href="https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download Traders Window for macOS</a></p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+        <p style="margin-top:12px;max-width:44ch">A free, private crypto price widget that floats over every app on your Mac.</p>
+      </div>
+      <div>
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="/learn/funding-rate/">Funding rate</a></li>
+          <li><a href="/learn/open-interest/">Open interest</a></li>
+          <li><a href="/learn/liquidations/">Liquidations</a></li>
+          <li><a href="/learn/crypto-price-alerts-mac/">Price alerts on Mac</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Traders Window</h2>
+        <ul>
+          <li><a href="/#download">Download for macOS</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          
+        </ul>
+      </div>
+    </div>
+    <p class="legal">© 2026 Traders Window. All rights reserved. For information only; nothing here or in the app is financial advice. Market data from Binance, Fear &amp; Greed from alternative.me, dominance from CoinPaprika. Traders Window is not affiliated with Binance or any exchange.</p>
+  </div>
+</footer>
+
+</body>
+</html>
