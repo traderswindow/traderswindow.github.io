@@ -302,7 +302,7 @@ th { color: var(--muted); font-weight: 500; }
 .guide .step-text h2 { font-size: 1.55rem; display: flex; gap: 14px; align-items: baseline; }
 .guide .step-text h2::before { content: counter(g); font: 700 1.55rem/1 var(--display); color: var(--cyan); min-width: 1.2ch; }
 .guide .step-text p { color: #c4cbd3; }
-.guide > li:first-child { grid-template-columns: 1fr; }
+.guide > li:not(:has(figure)) { grid-template-columns: 1fr; }
 .illo { margin: 0; display: grid; justify-items: center; }
 @media (max-width: 820px) { .guide > li { grid-template-columns: 1fr; } .illo { justify-items: start; } }
 
@@ -363,3 +363,30 @@ kbd { font: 600 0.9rem/1 var(--mono); padding: 2px 6px; border-radius: 5px; back
 .sw-block { display: grid; gap: 0; border-radius: 8px; background: #2a2a2e; }
 .sw-block .sw-row.plain { background: none; }
 .sw-block p { padding: 0 10px 10px; color: #9a9aa0; font-size: 10.5px; }
+
+/* ================= phone alerts guide ================= */
+.ntfy-ic { width: 52px; height: 52px; flex: none; }
+.store-card, .notif {
+  display: flex; align-items: center; gap: 14px; width: min(360px, 100%);
+  padding: 14px 16px; border-radius: 18px; background: #1c1c1f; border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.85);
+  font: 400 13px/1.35 -apple-system, BlinkMacSystemFont, sans-serif; color: #e8e8ea;
+}
+.store-card > div, .notif > div { display: grid; flex: 1; min-width: 0; }
+.store-card b { font-size: 16px; }
+.store-card span, .notif span { color: #b8b8be; }
+.store-card small, .notif small { color: #8a8a90; font-size: 12px; }
+.store-card .get { flex: none; padding: 6px 16px; border-radius: 999px; background: #2c2c30; color: #0a84ff; font-weight: 700; }
+.notif { border-radius: 22px; background: rgba(40, 40, 44, 0.95); }
+.notif b { font-size: 14px; }
+.notif small { align-self: flex-start; }
+.phone-card {
+  display: grid; gap: 10px; width: 260px; padding: 18px 16px; border-radius: 18px;
+  background: #1c1c1f; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.85);
+  font: 400 13px/1.35 -apple-system, BlinkMacSystemFont, sans-serif; color: #e8e8ea;
+}
+.phone-card b { font-size: 15px; }
+.phone-card .field { padding: 9px 10px; border-radius: 9px; background: #2a2a2e; font-family: var(--mono); font-size: 12.5px; }
+.phone-card .hintline { color: #8a8a90; font-size: 12px; }
+.phone-card .mbtn { padding: 8px 10px; }
+.phone-card .target::after { left: auto; right: 0; top: calc(100% + 10px); transform: none; }
