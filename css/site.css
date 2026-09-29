@@ -410,3 +410,10 @@ kbd { font: 600 0.9rem/1 var(--mono); padding: 2px 6px; border-radius: 5px; back
 .coin-card .qr { width: 180px; height: 180px; border-radius: 10px; }
 .coin-card .addr { font: 500 0.82rem/1.45 var(--mono); word-break: break-all; text-align: center; color: var(--paper); user-select: all; -webkit-user-select: all; }
 .coin-card .copy { width: 100%; justify-content: center; padding: 10px 14px; }
+
+/* ================= licenses ================= */
+.licenses .lic-table { max-height: 70vh; overflow: auto; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; }
+.licenses .lic-table table { font-size: 0.85rem; }
+.licenses .lic-table thead th { position: sticky; top: 0; background: var(--surface); }
+.licenses pre.lic { white-space: pre-wrap; font-size: 0.8rem; line-height: 1.5; color: #b3bbc4; }
+.licenses td a { color: var(--paper); }
