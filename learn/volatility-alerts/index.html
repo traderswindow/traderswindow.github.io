@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Volatility Price Alerts for Crypto (σ) | Traders Window</title>
+<meta name="description" content="Why a fixed percentage alert is too noisy for small coins and too quiet for Bitcoin, and how alerts measured in σ, each coin's normal hourly move, fix it.">
+<link rel="canonical" href="https://traderswindow.github.io/learn/volatility-alerts/">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="google-site-verification" content="REtRLVeZpW_TkyPzTXTq6vQsaAPv7c5Qn4NWx6Dai3M">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Traders Window">
+<meta property="og:title" content="Volatility Price Alerts for Crypto (σ) | Traders Window">
+<meta property="og:description" content="Why a fixed percentage alert is too noisy for small coins and too quiet for Bitcoin, and how alerts measured in σ, each coin's normal hourly move, fix it.">
+<meta property="og:url" content="https://traderswindow.github.io/learn/volatility-alerts/">
+<meta property="og:image" content="https://traderswindow.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-256.png">
+<link rel="preload" href="/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Volatility-based price alerts: why one percentage doesn't fit every coin","description":"Why a fixed percentage alert is too noisy for small coins and too quiet for Bitcoin, and how alerts measured in σ, each coin's normal hourly move, fix it.","datePublished":"2026-09-29","dateModified":"2026-09-29","author":{"@type":"Organization","name":"Traders Window"},"publisher":{"@type":"Organization","name":"Traders Window","logo":{"@type":"ImageObject","url":"https://traderswindow.github.io/img/icon-256.png"}},"image":"https://traderswindow.github.io/img/og.png","mainEntityOfPage":"https://traderswindow.github.io/learn/volatility-alerts/"}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="menubar">
+  <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+  <nav aria-label="Main">
+    <a href="/#read">Reading the widget</a>
+    <a href="/#features">Features</a>
+    <a href="/install/">Install</a>
+    <a href="/learn/" aria-current="page">Learn</a>
+    <a href="/#faq">FAQ</a>
+  </nav>
+  <div class="tray"><span class="clock" aria-hidden="true"></span><a class="coffee-link" href="/support/" title="Buy me a coffee"><span aria-hidden="true">☕</span><span class="t">Buy me a coffee</span></a><a class="dl" href="/#download">Download</a></div>
+</header>
+<main id="main">
+
+<article class="article">
+  <div class="wrap">
+    <header>
+      <p class="crumbs"><a href="/learn/">Learn</a></p>
+      <h1>Volatility-based price alerts: why one percentage doesn't fit every coin</h1>
+      <p>A 2% alert on Bitcoin fires on a real move. The same 2% on a small coin fires all day. Measuring moves against each coin's own volatility fixes that.</p>
+    </header>
+    <div class="prose">
+<h2>The problem with fixed thresholds</h2>
+<p>Coins don't move the same amount. Bitcoin often moves a fraction of a percent in a typical hour, while a small-cap coin can move several percent without anything special happening. Set the same percentage alert on both and you get one alert that rarely fires and another that never stops.</p>
+<p>Volatility also changes over time. A threshold that made sense last week can be too tight after a big news day and too loose in a quiet one.</p>
+
+<h2>Measuring moves in σ</h2>
+<p>σ (sigma) is the standard deviation of returns: roughly, the size of a normal move. Traders Window calculates each coin's σ from its last 24 hourly returns on Binance, so it's always current and specific to that coin.</p>
+<ul>
+  <li><b>1σ</b> is an ordinary hourly move for that coin.</li>
+  <li><b>2σ</b> is unusual. In a textbook bell curve, only about 5% of moves are that large.</li>
+  <li><b>3σ</b> is rare, or would be in a textbook. Crypto has “fat tails”: big moves happen more often than the bell curve predicts, which is exactly why they're worth an alert.</li>
+</ul>
+<p>So an alert at 2σ means the same thing, “unusual for this coin, right now”, whether you set it on Bitcoin or on a meme coin.</p>
+
+<h2>When to use $, % or σ</h2>
+<ul>
+  <li><b>$</b> when you care about a specific amount, for example on a position with a fixed risk.</li>
+  <li><b>%</b> for a simple, stable rule on one coin you know well.</li>
+  <li><b>σ</b> when you watch several coins, or want alerts that adapt as the market gets quieter or wilder.</li>
+</ul>
+
+<h2>Setting it up in Traders Window</h2>
+<ol>
+  <li>Open Settings → Alerts.</li>
+  <li>Next to a coin, type a number and switch the unit to <b>σ</b>. Start with 2.</li>
+  <li>Choose a direction with the arrow: both ways, up only or down only.</li>
+</ol>
+<p>The move is measured from the price when you set the alert, or when you last dismissed it. σ is recalculated as new hourly candles close, so the threshold follows the market by itself.</p>
+
+<div class="callout">
+  <p>More on the alert itself, sounds and phone delivery: <a href="/learn/crypto-price-alerts-mac/">price alerts on a Mac you won't miss</a>.</p>
+</div>
+      <p class="muted" style="margin-top:2.5em">For information only, not financial advice.</p>
+      <p><a class="btn" href="https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download Traders Window for macOS</a></p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+        <p style="margin-top:12px;max-width:44ch">A free, private crypto price widget that floats over every app on your Mac.</p>
+      </div>
+      <div>
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="/learn/funding-rate/">Funding rate</a></li>
+          <li><a href="/learn/open-interest/">Open interest</a></li>
+          <li><a href="/learn/liquidations/">Liquidations</a></li>
+          <li><a href="/learn/crypto-price-alerts-mac/">Price alerts on Mac</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Traders Window</h2>
+        <ul>
+          <li><a href="/#download">Download for macOS</a></li>
+          <li><a href="/install/">How to install</a></li>
+          <li><a href="/phone-alerts/">Alerts on your phone</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="https://github.com/traderswindow/traderswindow.github.io/discussions" rel="noopener">Feedback &amp; ideas</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/licenses/">Open-source licenses</a></li>
+          <li><a class="coffee" href="/support/">☕ Buy me a coffee</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">© 2026 Traders Window. All rights reserved. For information only; nothing here or in the app is financial advice. Market data from Binance, Fear &amp; Greed from alternative.me, dominance from CoinPaprika. Traders Window is not affiliated with Binance or any exchange.</p>
+  </div>
+</footer>
+
+</body>
+</html>

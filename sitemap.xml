@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://traderswindow.github.io/</loc><lastmod>2026-09-28</lastmod><priority>1.0</priority></url>
-  <url><loc>https://traderswindow.github.io/learn/</loc><lastmod>2026-09-28</lastmod><priority>0.8</priority></url>
+  <url><loc>https://traderswindow.github.io/learn/</loc><lastmod>2026-09-29</lastmod><priority>0.8</priority></url>
   <url><loc>https://traderswindow.github.io/learn/funding-rate/</loc><lastmod>2026-09-28</lastmod><priority>0.7</priority></url>
   <url><loc>https://traderswindow.github.io/learn/open-interest/</loc><lastmod>2026-09-28</lastmod><priority>0.7</priority></url>
   <url><loc>https://traderswindow.github.io/learn/liquidations/</loc><lastmod>2026-09-28</lastmod><priority>0.7</priority></url>
@@ -12,6 +12,13 @@
   <url><loc>https://traderswindow.github.io/learn/crypto-price-over-full-screen-mac/</loc><lastmod>2026-09-28</lastmod><priority>0.7</priority></url>
   <url><loc>https://traderswindow.github.io/learn/menu-bar-ticker-vs-floating-widget/</loc><lastmod>2026-09-28</lastmod><priority>0.7</priority></url>
   <url><loc>https://traderswindow.github.io/learn/daily-loss-limit/</loc><lastmod>2026-09-28</lastmod><priority>0.7</priority></url>
+  <url><loc>https://traderswindow.github.io/learn/crypto-trading-sessions/</loc><lastmod>2026-09-29</lastmod><priority>0.7</priority></url>
+  <url><loc>https://traderswindow.github.io/learn/fear-and-greed-index/</loc><lastmod>2026-09-29</lastmod><priority>0.7</priority></url>
+  <url><loc>https://traderswindow.github.io/learn/bitcoin-dominance/</loc><lastmod>2026-09-29</lastmod><priority>0.7</priority></url>
+  <url><loc>https://traderswindow.github.io/learn/volatility-alerts/</loc><lastmod>2026-09-29</lastmod><priority>0.7</priority></url>
+  <url><loc>https://traderswindow.github.io/learn/order-flow-large-trades/</loc><lastmod>2026-09-29</lastmod><priority>0.7</priority></url>
+  <url><loc>https://traderswindow.github.io/learn/binance-read-only-api-key/</loc><lastmod>2026-09-29</lastmod><priority>0.7</priority></url>
+  <url><loc>https://traderswindow.github.io/learn/revenge-trading/</loc><lastmod>2026-09-29</lastmod><priority>0.7</priority></url>
   <url><loc>https://traderswindow.github.io/install/</loc><lastmod>2026-09-28</lastmod><priority>0.8</priority></url>
   <url><loc>https://traderswindow.github.io/phone-alerts/</loc><lastmod>2026-09-28</lastmod><priority>0.7</priority></url>
   <url><loc>https://traderswindow.github.io/privacy/</loc><lastmod>2026-09-28</lastmod><priority>0.3</priority></url>

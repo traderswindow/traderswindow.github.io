@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Create a Read-Only Binance API Key | Traders Window</title>
+<meta name="description" content="Step by step: create a Binance API key that can only read your account, which permissions to leave off, where to store it, and what to do if it leaks.">
+<link rel="canonical" href="https://traderswindow.github.io/learn/binance-read-only-api-key/">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="google-site-verification" content="REtRLVeZpW_TkyPzTXTq6vQsaAPv7c5Qn4NWx6Dai3M">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Traders Window">
+<meta property="og:title" content="How to Create a Read-Only Binance API Key | Traders Window">
+<meta property="og:description" content="Step by step: create a Binance API key that can only read your account, which permissions to leave off, where to store it, and what to do if it leaks.">
+<meta property="og:url" content="https://traderswindow.github.io/learn/binance-read-only-api-key/">
+<meta property="og:image" content="https://traderswindow.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-256.png">
+<link rel="preload" href="/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to create a read-only Binance API key, and keep it safe","description":"Step by step: create a Binance API key that can only read your account, which permissions to leave off, where to store it, and what to do if it leaks.","datePublished":"2026-09-29","dateModified":"2026-09-29","author":{"@type":"Organization","name":"Traders Window"},"publisher":{"@type":"Organization","name":"Traders Window","logo":{"@type":"ImageObject","url":"https://traderswindow.github.io/img/icon-256.png"}},"image":"https://traderswindow.github.io/img/og.png","mainEntityOfPage":"https://traderswindow.github.io/learn/binance-read-only-api-key/"}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="menubar">
+  <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+  <nav aria-label="Main">
+    <a href="/#read">Reading the widget</a>
+    <a href="/#features">Features</a>
+    <a href="/install/">Install</a>
+    <a href="/learn/" aria-current="page">Learn</a>
+    <a href="/#faq">FAQ</a>
+  </nav>
+  <div class="tray"><span class="clock" aria-hidden="true"></span><a class="coffee-link" href="/support/" title="Buy me a coffee"><span aria-hidden="true">☕</span><span class="t">Buy me a coffee</span></a><a class="dl" href="/#download">Download</a></div>
+</header>
+<main id="main">
+
+<article class="article">
+  <div class="wrap">
+    <header>
+      <p class="crumbs"><a href="/learn/">Learn</a></p>
+      <h1>How to create a read-only Binance API key, and keep it safe</h1>
+      <p>Many portfolio and trading tools ask for a Binance API key. A read-only key lets them see your balances and positions without being able to trade or withdraw.</p>
+    </header>
+    <div class="prose">
+<h2>What an API key is</h2>
+<p>An API key lets a program talk to your Binance account without your password. It comes in two parts: the <b>API key</b>, like a username, and the <b>secret key</b>, like a password. Each key has its own permissions, and a key with reading only can look but not touch.</p>
+
+<h2>Creating the key</h2>
+<ol>
+  <li>Log in to Binance on the web, click your profile icon and open <b>API Management</b>.</li>
+  <li>Click <b>Create API</b> and choose the system-generated key type.</li>
+  <li>Give it a label you'll recognize later, for example the name of the app that will use it.</li>
+  <li>Complete the security verification (2FA, email or passkey).</li>
+  <li>Copy the <b>API key</b> and the <b>secret key</b> right away. Binance shows the secret only once.</li>
+  <li>Click <b>Edit restrictions</b> and check the permissions. Leave only <b>Enable Reading</b> on.</li>
+</ol>
+<p>Binance changes its screens from time to time, so labels may differ slightly. Its own guide is <a href="https://www.binance.com/en/support/faq/detail/360002502072" rel="noopener">How to create API keys on Binance</a>.</p>
+
+<h2>Permissions to leave off</h2>
+<ul>
+  <li><b>Spot &amp; Margin Trading</b>: lets the key place and cancel orders.</li>
+  <li><b>Futures</b>: lets the key trade futures. Reading your futures positions doesn't need it.</li>
+  <li><b>Withdrawals</b>: lets the key move funds out. Never enable it for a tool that only displays data.</li>
+  <li><b>Universal Transfer</b>, margin loans and similar options: not needed to read.</li>
+</ul>
+<p>An IP restriction adds protection if your internet connection has a fixed IP address. Most home connections don't, so read-only keys are commonly left unrestricted.</p>
+
+<h2>Keeping it safe</h2>
+<ul>
+  <li>Never paste the secret into a chat, an email, a screenshot or a website form you don't trust.</li>
+  <li>Use a separate key for each app, so you can revoke one without breaking the others.</li>
+  <li>Delete keys you no longer use.</li>
+  <li>If you think a secret has leaked, delete the key in API Management right away and create a new one.</li>
+</ul>
+
+<h2>Using it with Traders Window</h2>
+<div class="callout">
+  <p>In Settings → Account, paste the API key and secret. The app asks Binance which permissions the key has and refuses it if any trading, withdrawal or transfer permission is on. The key is stored in your Mac's Keychain and used only to talk to Binance directly. With it connected, the widget shows your futures positions, <a href="/learn/liquidation-alerts/">distance to liquidation</a> and <a href="/learn/daily-loss-limit/">today's result against your daily limit</a>.</p>
+</div>
+<p class="muted">If your positions don't show up, make sure your Futures account is activated, and try creating a new key after activating it.</p>
+      <p class="muted" style="margin-top:2.5em">For information only, not financial advice.</p>
+      <p><a class="btn" href="https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download Traders Window for macOS</a></p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+        <p style="margin-top:12px;max-width:44ch">A free, private crypto price widget that floats over every app on your Mac.</p>
+      </div>
+      <div>
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="/learn/funding-rate/">Funding rate</a></li>
+          <li><a href="/learn/open-interest/">Open interest</a></li>
+          <li><a href="/learn/liquidations/">Liquidations</a></li>
+          <li><a href="/learn/crypto-price-alerts-mac/">Price alerts on Mac</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Traders Window</h2>
+        <ul>
+          <li><a href="/#download">Download for macOS</a></li>
+          <li><a href="/install/">How to install</a></li>
+          <li><a href="/phone-alerts/">Alerts on your phone</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="https://github.com/traderswindow/traderswindow.github.io/discussions" rel="noopener">Feedback &amp; ideas</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/licenses/">Open-source licenses</a></li>
+          <li><a class="coffee" href="/support/">☕ Buy me a coffee</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">© 2026 Traders Window. All rights reserved. For information only; nothing here or in the app is financial advice. Market data from Binance, Fear &amp; Greed from alternative.me, dominance from CoinPaprika. Traders Window is not affiliated with Binance or any exchange.</p>
+  </div>
+</footer>
+
+</body>
+</html>
