@@ -78,15 +78,15 @@
         <div class="step-text">
           <h2>Open it once, then click Done</h2>
           <p>Open Traders Window from Launchpad or the Applications folder. macOS will say it can't verify the app. That's expected for apps that aren't signed with a paid certificate.</p>
-          <p>Click <b>Done</b>. Don't click Move to Trash.</p>
+          <p>Click <b>Done</b>. Nothing is deleted; macOS just remembers you tried to open it.</p>
         </div>
         <figure class="illo" aria-label="Illustration: the macOS dialog saying Traders Window was not opened, with the Done button highlighted">
-          <div class="alert">
-            <img src="/img/icon-256.png" alt="" width="44" height="44">
+          <div class="alert left">
+            <span class="q" aria-hidden="true">?</span>
+            <svg class="gk" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 6 26v30h52V26Z" fill="#9aa0a8"/><path d="M32 12 12 27v25h40V27Z" fill="#c9ced6"/><circle cx="30" cy="38" r="9" fill="#7c828b"/><path d="M46 36 60 60H32Z" fill="#f5c542" stroke="#1e1e21" stroke-width="2" stroke-linejoin="round"/><path d="M46 44v8M46 55.5v.5" stroke="#1e1e21" stroke-width="3" stroke-linecap="round"/></svg>
             <b>“Traders Window” Not Opened</b>
             <p>Apple could not verify “Traders Window” is free of malware that may harm your Mac or compromise your privacy.</p>
             <span class="mbtn primary target">Done</span>
-            <span class="mbtn">Move to Trash</span>
           </div>
         </figure>
       </li>
@@ -94,15 +94,18 @@
       <li>
         <div class="step-text">
           <h2>Allow it in System Settings</h2>
-          <p>Open the Apple menu → <b>System Settings</b> → <b>Privacy &amp; Security</b>. Scroll down to the <b>Security</b> section. You'll see a line saying Traders Window was blocked. Click <b>Open Anyway</b>.</p>
+          <p>Open the Apple menu → <b>System Settings</b> → <b>Privacy &amp; Security</b>. Scroll down past <b>Analytics &amp; Improvements</b> to the <b>Security</b> section. You'll see “Traders Window” was blocked to protect your Mac. Click <b>Open Anyway</b>.</p>
         </div>
         <figure class="illo" aria-label="Illustration: the Security section of Privacy and Security settings with the Open Anyway button highlighted">
           <div class="settings-win">
-            <div class="sw-side"><span>General</span><span>Appearance</span><span>Control Center</span><span class="on">Privacy &amp; Security</span><span>Desktop &amp; Dock</span></div>
+            <div class="sw-side"><span>Screen Time</span><span>Lock Screen</span><span class="on">Privacy &amp; Security</span><span>Touch ID &amp; Password</span><span>Users &amp; Groups</span></div>
             <div class="sw-main">
               <b class="sw-h">Security</b>
               <div class="sw-row"><span>Allow applications from</span><span class="sw-pop">App Store &amp; Known Developers</span></div>
-              <div class="sw-row"><span>“Traders Window” was blocked to protect your Mac.</span><span class="mbtn small target">Open Anyway</span></div>
+              <div class="sw-block">
+                <div class="sw-row plain"><span>“Traders Window” was blocked to protect your Mac.</span><span class="mbtn small target">Open Anyway</span></div>
+                <p>Apple could not verify “Traders Window” is free of malware that may harm your Mac or compromise your privacy.</p>
+              </div>
             </div>
           </div>
         </figure>
@@ -119,7 +122,7 @@
             <b>Open “Traders Window”?</b>
             <p>Apple is not able to verify that it is free from malware. Only open it if you trust where it came from.</p>
             <span class="mbtn primary target">Open Anyway</span>
-            <span class="mbtn">Move to Trash</span>
+            <span class="mbtn">Done</span>
           </div>
         </figure>
       </li>
