@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TradingView Alert Limit Workaround | Traders Window</title>
+<meta name="description" content="Why TradingView caps your active alerts, what to keep there, and how to get unlimited price, % and volatility alerts on your Mac for free.">
+<link rel="canonical" href="https://traderswindow.github.io/learn/tradingview-alert-limits/">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="google-site-verification" content="REtRLVeZpW_TkyPzTXTq6vQsaAPv7c5Qn4NWx6Dai3M">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Traders Window">
+<meta property="og:title" content="TradingView Alert Limit Workaround | Traders Window">
+<meta property="og:description" content="Why TradingView caps your active alerts, what to keep there, and how to get unlimited price, % and volatility alerts on your Mac for free.">
+<meta property="og:url" content="https://traderswindow.github.io/learn/tradingview-alert-limits/">
+<meta property="og:image" content="https://traderswindow.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-256.png">
+<link rel="preload" href="/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"TradingView alert limits, and how to get unlimited price alerts","description":"Why TradingView caps your active alerts, what to keep there, and how to get unlimited price, % and volatility alerts on your Mac for free.","datePublished":"2026-09-28","dateModified":"2026-09-28","author":{"@type":"Organization","name":"Traders Window"},"publisher":{"@type":"Organization","name":"Traders Window","logo":{"@type":"ImageObject","url":"https://traderswindow.github.io/img/icon-256.png"}},"image":"https://traderswindow.github.io/img/og.png","mainEntityOfPage":"https://traderswindow.github.io/learn/tradingview-alert-limits/"}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="menubar">
+  <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+  <nav aria-label="Main">
+    <a href="/#read">Reading the widget</a>
+    <a href="/#features">Features</a>
+    <a href="/install/">Install</a>
+    <a href="/learn/" aria-current="page">Learn</a>
+    <a href="/#faq">FAQ</a>
+  </nav>
+  <div class="tray"><span class="clock" aria-hidden="true"></span><a class="coffee-link" href="/support/" title="Buy me a coffee"><span aria-hidden="true">☕</span><span class="t">Buy me a coffee</span></a><a class="dl" href="/#download">Download</a></div>
+</header>
+<main id="main">
+
+<article class="article">
+  <div class="wrap">
+    <header>
+      <p class="crumbs"><a href="/learn/">Learn</a></p>
+      <h1>TradingView alert limits, and how to get unlimited price alerts</h1>
+      <p>TradingView limits how many alerts you can keep active, and the free plan allows very few. Here's how to spend those slots wisely and move simple price alerts somewhere without a cap.</p>
+    </header>
+    <div class="prose">
+<h2>Why you run out of alerts</h2>
+<p>Every TradingView plan has a cap on active alerts. At the time of writing, the free plan includes only a handful of price alerts and no alerts on indicators, and each paid tier raises the cap. The current numbers are on <a href="https://www.tradingview.com/pricing/" rel="noopener">TradingView's pricing page</a>.</p>
+<p>Traders hit the cap fast, because most alerts are simple: “tell me if BTC drops below this level”, repeated across several coins and levels. Each one takes a slot.</p>
+
+<h2>What's worth keeping on TradingView</h2>
+<ul>
+  <li><b>Indicator and strategy alerts</b>: RSI crosses, moving averages, custom Pine scripts. This is where TradingView is hard to replace.</li>
+  <li><b>Alerts on markets outside crypto</b>, like stocks, forex and indices.</li>
+  <li><b>Webhook alerts</b> that feed a bot or another service.</li>
+</ul>
+
+<h2>What you can move elsewhere</h2>
+<ul>
+  <li><b>Plain price levels and moves</b> on crypto pairs.</li>
+  <li><b>Percentage moves</b>, like “ETH moved 3% since I last looked”.</li>
+  <li><b>Unusual activity</b>: funding flipping, liquidation waves, volume spikes. TradingView doesn't alert on most of these out of the box.</li>
+</ul>
+
+<h2>Unlimited crypto alerts with Traders Window</h2>
+<p>Traders Window is a free Mac widget that keeps these alerts locally, on your computer, with no cap and no account:</p>
+<ul>
+  <li>a move threshold per coin, in <b>dollars</b>, <b>percent</b> or <b>σ</b>, the coin's normal hourly swing, so “2σ” means unusual for that coin;</li>
+  <li>funding flips, liquidation waves and unusual volume;</li>
+  <li>a pulsing frame and a sound that repeats until you dismiss it, plus optional <a href="/phone-alerts/">alerts on your phone</a>.</li>
+</ul>
+<p>Prices stream straight from Binance about once a second, so the alert fires as soon as the move happens.</p>
+
+<div class="callout">
+  <p>A practical split: keep your indicator and strategy alerts on TradingView, and move every “price crossed X” alert to the widget. Most traders get their TradingView slots back without upgrading.</p>
+</div>
+      <p class="muted" style="margin-top:2.5em">For information only, not financial advice.</p>
+      <p><a class="btn" href="https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download Traders Window for macOS</a></p>
+    </div>
+  </div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+        <p style="margin-top:12px;max-width:44ch">A free, private crypto price widget that floats over every app on your Mac.</p>
+      </div>
+      <div>
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="/learn/funding-rate/">Funding rate</a></li>
+          <li><a href="/learn/open-interest/">Open interest</a></li>
+          <li><a href="/learn/liquidations/">Liquidations</a></li>
+          <li><a href="/learn/crypto-price-alerts-mac/">Price alerts on Mac</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Traders Window</h2>
+        <ul>
+          <li><a href="/#download">Download for macOS</a></li>
+          <li><a href="/install/">How to install</a></li>
+          <li><a href="/phone-alerts/">Alerts on your phone</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a class="coffee" href="/support/">☕ Buy me a coffee</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">© 2026 Traders Window. All rights reserved. For information only; nothing here or in the app is financial advice. Market data from Binance, Fear &amp; Greed from alternative.me, dominance from CoinPaprika. Traders Window is not affiliated with Binance or any exchange.</p>
+  </div>
+</footer>
+
+</body>
+</html>
