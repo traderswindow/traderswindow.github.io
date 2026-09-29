@@ -22,7 +22,7 @@
 <link rel="preload" href="/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Traders Window","operatingSystem":"macOS 13 or later","applicationCategory":"FinanceApplication","description":"A free always-on-top crypto price widget for Mac with live Binance prices, funding rates, open interest, liquidations and price alerts.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg","softwareVersion":"0.1.0","image":"https://traderswindow.github.io/img/og.png","url":"https://traderswindow.github.io/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Traders Window","operatingSystem":"macOS 13 or later","applicationCategory":"FinanceApplication","description":"A free always-on-top crypto price widget for Mac with live Binance prices, funding rates, open interest, liquidations and price alerts.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"downloadUrl":"https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg","softwareVersion":"0.1.1","image":"https://traderswindow.github.io/img/og.png","url":"https://traderswindow.github.io/"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Traders Window really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. No ads, no account, no trial, no paid tier. If it helps you, you can buy me a coffee, but you never have to."}},{"@type":"Question","name":"Can it trade or move my money?","acceptedAnswer":{"@type":"Answer","text":"No. Prices come from public market data. Connecting your Binance account is optional and only accepts a read-only API key: the app checks the key's permissions and refuses any key that can trade, withdraw or transfer. The key is stored in your Mac's Keychain and is only ever sent to Binance."}},{"@type":"Question","name":"Why does macOS warn me the first time I open it?","acceptedAnswer":{"@type":"Answer","text":"Traders Window is a free project and isn't signed with a paid Apple developer certificate, so macOS asks you to confirm once. Open System Settings → Privacy &amp; Security, scroll down and click Open Anyway. You only do this the first time."}},{"@type":"Question","name":"Does it collect any data about me?","acceptedAnswer":{"@type":"Answer","text":"No. There are no analytics, no accounts and no servers of ours in between. The app talks directly to Binance, alternative.me and CoinPaprika for market data, and to ntfy.sh only if you turn on phone alerts."}},{"@type":"Question","name":"Does it really stay on top of full-screen apps?","acceptedAnswer":{"@type":"Answer","text":"Yes. It floats over full-screen TradingView, browsers and exchange apps. Clicking it doesn't take focus away from your trading app, and ghost mode lets your clicks pass straight through."}},{"@type":"Question","name":"Which coins and exchanges does it support?","acceptedAnswer":{"@type":"Answer","text":"Any coin with a USDT pair on Binance, up to 8 at once. Futures data (funding, open interest, liquidations) appears for coins that have a Binance perpetual contract. Binance is the only data source for now."}},{"@type":"Question","name":"Does it work in the United States?","acceptedAnswer":{"@type":"Answer","text":"Binance.com restricts US users. Prices usually still load through Binance's public market-data mirror, but futures data may be unavailable."}},{"@type":"Question","name":"Is there a Windows version?","acceptedAnswer":{"@type":"Answer","text":"Not yet. Traders Window is macOS only for now."}},{"@type":"Question","name":"What do I need to run it?","acceptedAnswer":{"@type":"Answer","text":"A Mac with macOS 13 Ventura or later, on Apple silicon or Intel."}}]}</script>
 
 </head>
@@ -201,7 +201,7 @@
   <div class="wrap install">
     <div class="dl-card">
       <h2>Download Traders Window</h2>
-      <p class="req">Version 0.1.0 for macOS 13 Ventura or later, Apple silicon and Intel.</p>
+      <p class="req">Version 0.1.1 for macOS 13 Ventura or later, Apple silicon and Intel.</p>
       <p><a class="btn" href="https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download for macOS</a></p>
       <p class="why">It's free and isn't signed with a paid Apple certificate, so macOS asks you to confirm the first time you open it. Step 3 shows how.</p>
     </div>
@@ -256,7 +256,7 @@
           <li><a href="/#download">Download for macOS</a></li>
           <li><a href="/#faq">FAQ</a></li>
           <li><a href="/privacy/">Privacy</a></li>
-          
+          <li><a class="coffee" href="/support/">☕ Buy me a coffee</a></li>
         </ul>
       </div>
     </div>
