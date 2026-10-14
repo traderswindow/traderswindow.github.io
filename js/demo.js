@@ -258,3 +258,36 @@ if (specimen) {
   }
   document.querySelector(".legend").addEventListener("mouseleave", () => hl.classList.remove("on"));
 }
+
+// Live numbers on the free tools cards
+{
+  const el = (k) => document.querySelector(`[data-live="${k}"]`);
+  const set = (k, text, cls) => { const e = el(k); if (!e) return; e.textContent = text; e.className = `num ${cls || ""}`; };
+  const funding = async () => {
+    try {
+      const r = await (await fetch("https://fapi.binance.com/fapi/v1/premiumIndex?symbol=BTCUSDT")).json();
+      const v = parseFloat(r.lastFundingRate) * 100;
+      if (!Number.isFinite(v)) throw 0;
+      set("funding", `${v >= 0 ? "+" : ""}${v.toFixed(4)}%`, v >= 0 ? "up" : "down");
+    } catch { set("funding", "See the table", "text"); }
+  };
+  const ls = async () => {
+    try {
+      const r = await (await fetch("https://fapi.binance.com/futures/data/globalLongShortAccountRatio?symbol=BTCUSDT&period=5m&limit=1")).json();
+      const v = parseFloat(r[0].longAccount) * 100;
+      if (!Number.isFinite(v)) throw 0;
+      set("ls", `${v.toFixed(1)}%`);
+    } catch { set("ls", "See the ratio", "text"); }
+  };
+  const minutesIn = (tz) => {
+    const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: tz, weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date()).map((x) => [x.type, x.value]));
+    return { day: p.weekday, m: +p.hour * 60 + +p.minute };
+  };
+  const hours = () => {
+    const open = [["Tokyo", "Asia/Tokyo", 540, 900], ["London", "Europe/London", 480, 990], ["New York", "America/New_York", 570, 960]]
+      .filter(([, tz, a, b]) => { const t = minutesIn(tz); return !["Sat", "Sun"].includes(t.day) && t.m >= a && t.m < b; })
+      .map(([n]) => n);
+    set("hours", open.length ? open.join(" + ") : "Crypto only (24/7)", "text");
+  };
+  if (el("funding")) { funding(); ls(); hours(); setInterval(() => { funding(); ls(); hours(); }, 60000); }
+}
