@@ -561,3 +561,4 @@ table.data td small { color: var(--muted); font-size: 0.78rem; }
 .ts-go { font-weight: 600; color: var(--cyan); }
 @media (max-width: 820px) { .ts-cards { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .ts-cards a { transition: none; } .ts-cards a:hover { transform: none; } }
+.ts-live .num.up { color: var(--up); } .ts-live .num.down { color: var(--down); }
