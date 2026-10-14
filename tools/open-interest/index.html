@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crypto Open Interest Live: BTC, ETH and Altcoins (Binance) | Traders Window</title>
+<meta name="description" content="Live open interest for Binance USDT perpetuals: value in dollars, 1-hour and 24-hour change, the trend over time and what each combination of price and open interest means.">
+<link rel="canonical" href="https://traderswindow.github.io/tools/open-interest/">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="google-site-verification" content="REtRLVeZpW_TkyPzTXTq6vQsaAPv7c5Qn4NWx6Dai3M">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Traders Window">
+<meta property="og:title" content="Crypto Open Interest Live: BTC, ETH and Altcoins (Binance) | Traders Window">
+<meta property="og:description" content="Live open interest for Binance USDT perpetuals: value in dollars, 1-hour and 24-hour change, the trend over time and what each combination of price and open interest means.">
+<meta property="og:url" content="https://traderswindow.github.io/tools/open-interest/">
+<meta property="og:image" content="https://traderswindow.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/img/icon-256.png">
+<link rel="preload" href="/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Open interest, live","description":"Live open interest for Binance USDT perpetuals: value in dollars, 1-hour and 24-hour change, the trend over time and what each combination of price and open interest means.","url":"https://traderswindow.github.io/tools/open-interest/","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"dateModified":"2026-10-14","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Traders Window","logo":{"@type":"ImageObject","url":"https://traderswindow.github.io/img/icon-256.png"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Free tools","item":"https://traderswindow.github.io/tools/"},{"@type":"ListItem","position":2,"name":"Open interest, live","item":"https://traderswindow.github.io/tools/open-interest/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does rising open interest mean?","acceptedAnswer":{"@type":"Answer","text":"New positions are being opened. If the price is rising at the same time, new longs are usually driving it; if the price is falling, new shorts are. Either way, more leverage is building up."}},{"@type":"Question","name":"What does falling open interest mean?","acceptedAnswer":{"@type":"Answer","text":"Positions are being closed or liquidated. A price rise with falling open interest is usually short covering; a fall with falling open interest is longs closing or getting liquidated."}},{"@type":"Question","name":"Is open interest the same as volume?","acceptedAnswer":{"@type":"Answer","text":"No. Volume counts every contract traded in a period, open interest counts the contracts still open at a moment. One trader buying and another selling the same contract adds to volume, but changes open interest only if a position was opened or closed."}}]}</script>
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="menubar">
+  <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+  <nav aria-label="Main">
+    <a href="/#read">Reading the widget</a>
+    <a href="/#features">Features</a>
+    <a href="/install/">Install</a>
+    <a href="/learn/">Learn</a>
+    <a href="/tools/" aria-current="page">Free tools</a>
+    <a href="/#faq">FAQ</a>
+  </nav>
+  <div class="tray"><span class="clock" aria-hidden="true"></span><a class="coffee-link" href="/support/" title="Buy me a coffee"><span aria-hidden="true">☕</span><span class="t">Buy me a coffee</span></a><a class="tools-link" href="/tools/">Tools</a><a class="dl" href="/#download">Download</a></div>
+</header>
+<main id="main">
+
+<article class="article tool-page">
+  <div class="wrap">
+    <header>
+      <p class="crumbs"><a href="/tools/">Free tools</a></p>
+      <h1>Open interest, live</h1>
+      <p>How much money sits in open futures positions right now, and whether it's arriving or leaving. Read together with price, it shows who is driving the move.</p>
+    </header>
+    
+  <div class="tool" data-tool="oi">
+    <p class="tool-msg" data-msg hidden></p>
+    
+    <div class="tbl-tools">
+      <div class="seg wrap-seg" role="group" aria-label="Coin" data-k="coins"></div>
+      <label class="field"><span>Other coin</span><input data-k="sym" list="oi-syms" placeholder="e.g. PEPE" autocomplete="off" spellcheck="false"><datalist id="oi-syms"></datalist></label>
+      <label class="field"><span>Period</span><select data-k="period"><option value="5m">5 minutes</option><option value="15m">15 minutes</option><option value="1h" selected>1 hour</option><option value="4h">4 hours</option><option value="1d">1 day</option></select></label>
+    </div>
+    <div class="stats" data-k="stats">
+      <div><span>Open interest</span><b class="num" data-k="oi">—</b><small data-k="oi-coins"></small></div>
+      <div><span>Change</span><b class="num" data-k="oi-chg">—</b><small data-k="span"></small></div>
+      <div><span>Price change</span><b class="num" data-k="px-chg">—</b><small data-k="span2"></small></div>
+      <div><span>Reading</span><b data-k="reading">—</b><small data-k="reading-note"></small></div>
+    </div>
+    <div class="oi-chart" data-k="chart"></div>
+    <p class="muted updated" data-k="updated" aria-live="polite"></p>
+
+    <h2 class="tool-h2">The 25 most traded coins</h2>
+    <p class="muted">Binance USDT perpetuals with the highest 24-hour volume. Click a column to sort, or a coin to chart it.</p>
+    <div class="tbl-wrap">
+      <table class="data">
+        <thead><tr>
+          <th scope="col"><button type="button" data-sort="sym">Coin</button></th>
+          <th scope="col" class="r"><button type="button" data-sort="oi" aria-sort="descending">Open interest</button></th>
+          <th scope="col" class="r"><button type="button" data-sort="c1">1h</button></th>
+          <th scope="col" class="r"><button type="button" data-sort="c24">24h</button></th>
+          <th scope="col" class="r"><button type="button" data-sort="px">Price 24h</button></th>
+          <th scope="col">Reading (24h)</th>
+        </tr></thead>
+        <tbody data-k="rows"><tr><td colspan="6" class="muted">Loading live data from Binance…</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="prose tool-prose">
+    <h2>What open interest is</h2>
+    <p><b>Open interest</b> is the total value of futures contracts that are still open: every long has a short on the other side, and the pair counts once. It rises when traders open new positions and falls when they close them or get liquidated. Here it's shown in dollars, at the current mark price. The longer explanation is in <a href="/learn/open-interest/">what is open interest</a>.</p>
+
+    <h2>Reading open interest with price</h2>
+    <table>
+      <thead><tr><th>Price</th><th>Open interest</th><th>Reading</th><th>What it usually means</th></tr></thead>
+      <tbody>
+        <tr><td class="up">Up</td><td>Up</td><td>New longs</td><td>Fresh money is buying with leverage. The move has fuel, but also more positions that can be liquidated if it turns.</td></tr>
+        <tr><td class="up">Up</td><td>Down</td><td>Short covering</td><td>Shorts are closing or being squeezed. These rallies can be sharp but often fade once the covering is done.</td></tr>
+        <tr><td class="down">Down</td><td>Up</td><td>New shorts</td><td>Traders are betting on more downside. If the price bounces instead, they become the fuel for a squeeze.</td></tr>
+        <tr><td class="down">Down</td><td>Down</td><td>Longs closing</td><td>Longs are giving up or being liquidated. Leverage is leaving the market, which often comes before a calmer phase.</td></tr>
+      </tbody>
+    </table>
+    <p>The <b>Reading</b> column applies this table to the last 24 hours. Changes under 1% in open interest or 0.5% in price count as flat. It's a description of what happened, not a prediction.</p>
+
+    <h2>Good to know</h2>
+    <ul>
+      <li>The data is from Binance only, the largest futures exchange but not the whole market.</li>
+      <li>Because it's in dollars, open interest also rises when the price rises, even if no new contracts were opened. Big changes beyond the price move are what matter.</li>
+      <li>Combine it with <a href="/tools/funding-rates/">funding rates</a> and the <a href="/tools/long-short-ratio/">long/short ratio</a> to see which side is crowded.</li>
+      <li>Binance blocks its futures API in some countries, including the United States, so the data can't load there.</li>
+    </ul>
+    
+    <div class="callout tool-cta">
+      <p>Traders Window shows the change in open interest next to the live price of each coin you follow, and flags it when it moves unusually fast. Free for Mac, floats over your charts.</p>
+      <p><a class="btn" href="https://github.com/traderswindow/traderswindow.github.io/releases/latest/download/TradersWindow.dmg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Download Traders Window for macOS</a> <a href="/">What is it?</a></p>
+    </div>
+  </div>
+    <section class="prose tool-faq" aria-labelledby="faq-h">
+      <h2 id="faq-h">Questions</h2>
+      <h3>What does rising open interest mean?</h3>
+      <p>New positions are being opened. If the price is rising at the same time, new longs are usually driving it; if the price is falling, new shorts are. Either way, more leverage is building up.</p>
+      <h3>What does falling open interest mean?</h3>
+      <p>Positions are being closed or liquidated. A price rise with falling open interest is usually short covering; a fall with falling open interest is longs closing or getting liquidated.</p>
+      <h3>Is open interest the same as volume?</h3>
+      <p>No. Volume counts every contract traded in a period, open interest counts the contracts still open at a moment. One trader buying and another selling the same contract adds to volume, but changes open interest only if a position was opened or closed.</p>
+      <p class="muted">More free tools: <a href="/tools/funding-rates/">Funding rates</a>, <a href="/tools/long-short-ratio/">Long/short ratio</a>, <a href="/tools/crypto-fear-and-greed-index/">Fear &amp; Greed</a>, <a href="/tools/altcoin-season-index/">Altcoin season</a>, <a href="/tools/crypto-economic-calendar/">Economic calendar</a>, <a href="/tools/crypto-market-hours/">Market hours</a>.</p>
+    </section>
+  </div>
+</article>
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img src="/img/icon-256.png" alt="" width="22" height="22">Traders Window</a>
+        <p style="margin-top:12px;max-width:44ch">A free, private crypto price widget that floats over every app on your Mac.</p>
+      </div>
+      <div>
+        <h2>Learn</h2>
+        <ul>
+          <li><a href="/learn/funding-rate/">Funding rate</a></li>
+          <li><a href="/learn/open-interest/">Open interest</a></li>
+          <li><a href="/learn/liquidations/">Liquidations</a></li>
+          <li><a href="/learn/crypto-price-alerts-mac/">Price alerts on Mac</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Free tools</h2>
+        <ul>
+          <li><a href="/tools/funding-rates/">Funding rates</a></li>
+          <li><a href="/tools/open-interest/">Open interest</a></li>
+          <li><a href="/tools/long-short-ratio/">Long/short ratio</a></li>
+          <li><a href="/tools/crypto-fear-and-greed-index/">Fear & Greed</a></li>
+          <li><a href="/tools/altcoin-season-index/">Altcoin season</a></li>
+          <li><a href="/tools/crypto-economic-calendar/">Economic calendar</a></li>
+          <li><a href="/tools/crypto-market-hours/">Market hours</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Traders Window</h2>
+        <ul>
+          <li><a href="/#download">Download for macOS</a></li>
+          <li><a href="/install/">How to install</a></li>
+          <li><a href="/phone-alerts/">Alerts on your phone</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="https://github.com/traderswindow/traderswindow.github.io/discussions" rel="noopener">Feedback &amp; ideas</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+          <li><a href="/licenses/">Open-source licenses</a></li>
+          <li><a class="coffee" href="/support/">☕ Buy me a coffee</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">© 2026 Traders Window. All rights reserved. For information only; nothing here or in the app is financial advice. Market data from Binance, Fear &amp; Greed from alternative.me, dominance from CoinPaprika. Traders Window is not affiliated with Binance or any exchange.</p>
+  </div>
+</footer>
+<script src="/js/tools.js" defer></script>
+</body>
+</html>

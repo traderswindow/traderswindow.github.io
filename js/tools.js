@@ -1,4 +1,4 @@
-// Uneltele de pe /tools/. Datele vin direct de la API-ul public Binance Futures (fără server).
+// Uneltele de pe /tools/. Datele vin direct din API-uri publice (Binance, alternative.me, CoinPaprika), fără server.
 (() => {
   "use strict";
   const API = "https://fapi.binance.com";
@@ -442,6 +442,410 @@
     timer = setInterval(() => { loadCoin(); loadMajors(); }, 60000);
   }
 
+  // Selector de monedă comun (long/short, open interest)
+  function coinPicker(root, list, onPick) {
+    k(root, "coins").innerHTML = MAJORS.map((m, i) => `<button type="button" data-pick="${m}" aria-pressed="${i === 0}">${m}</button>`).join("");
+    perps().then((l) => { if (l) $(`#${list}`).innerHTML = l.map((s) => `<option value="${esc(base(s))}">`).join(""); });
+    const choose = (s) => { setPressed($$("[data-pick]", root), $(`[data-pick="${s}"]`, root)); onPick(s); };
+    root.addEventListener("click", (e) => {
+      const p = e.target.closest("[data-pick]");
+      if (p) choose(p.dataset.pick);
+      const c = e.target.closest("[data-coin]");
+      if (c) { e.preventDefault(); choose(c.dataset.coin); k(root, "stats").scrollIntoView({ behavior: "smooth", block: "center" }); }
+    });
+    k(root, "sym").addEventListener("change", async (e) => {
+      const v = e.target.value.trim().toUpperCase().replace(/USDT$/, "");
+      if (!v) return;
+      const l = await perps();
+      if (l && !l.includes(`${v}USDT`)) { k(root, "updated").textContent = `${v} isn't a Binance USDT perpetual.`; return; }
+      choose(v);
+    });
+  }
+
+  const PERIOD_MS = { "5m": 3e5, "15m": 9e5, "1h": 36e5, "4h": 144e5, "1d": 864e5 };
+  const spanText = (n, period) => `over the last ${dur(n * PERIOD_MS[period]).replace(/ 0+m$/, "").replace(/ 0h$/, "")}`;
+
+  // ---------------------------------------------------------------------------
+  // Open interest
+  // ---------------------------------------------------------------------------
+  function reading(oiChg, pxChg) {
+    if (Math.abs(oiChg) < 1 || Math.abs(pxChg) < 0.5) return { text: "Flat", note: "No clear move in price and positions", cls: "" };
+    if (pxChg > 0) return oiChg > 0 ? { text: "New longs", note: "Price and positions rising together", cls: "up" } : { text: "Short covering", note: "Price up while positions close", cls: "up" };
+    return oiChg > 0 ? { text: "New shorts", note: "Price down while positions grow", cls: "down" } : { text: "Longs closing", note: "Price and positions falling together", cls: "down" };
+  }
+
+  function lines(series, label) {
+    const w = 600, h = 160, pad = 6;
+    const path = (vals) => {
+      let lo = Math.min(...vals), hi = Math.max(...vals);
+      if (hi - lo < 1e-12) { hi += 1; lo -= 1; }
+      return vals.map((v, i) => `${(pad + (i / (vals.length - 1)) * (w - 2 * pad)).toFixed(1)},${(pad + (1 - (v - lo) / (hi - lo)) * (h - 2 * pad)).toFixed(1)}`).join(" ");
+    };
+    return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="${esc(label)}">
+      ${series.map(([vals, c]) => vals.length > 1 ? `<polyline points="${path(vals)}" class="${c}"/>` : "").join("")}
+    </svg>`;
+  }
+
+  function oi(root) {
+    let sym = "BTC", period = "1h";
+    let rows = [], sort = { key: "oi", dir: -1 };
+
+    async function loadCoin() {
+      const s = `${sym}USDT`;
+      try {
+        const [hist, kl, now, mark] = await Promise.all([
+          get(`/futures/data/openInterestHist?symbol=${s}&period=${period}&limit=48`),
+          get(`/fapi/v1/klines?symbol=${s}&interval=${period}&limit=48`),
+          get(`/fapi/v1/openInterest?symbol=${s}`),
+          get(`/fapi/v1/premiumIndex?symbol=${s}`),
+        ]);
+        if (!hist.length) throw Object.assign(new Error("empty"), { status: 400 });
+        clearError(root);
+        const cur = +now.openInterest * +mark.markPrice;
+        const vals = [...hist.map((x) => +x.sumOpenInterestValue), cur];
+        const first = vals[0];
+        const oiChg = (cur / first - 1) * 100;
+        const px = kl.map((x) => +x[4]);
+        const pxChg = (+mark.markPrice / +kl[0][1] - 1) * 100;
+        const r = reading(oiChg, pxChg);
+        const span = spanText(hist.length, period);
+        k(root, "oi").textContent = money(cur);
+        k(root, "oi-coins").textContent = `${(+now.openInterest).toLocaleString("en-US", { maximumFractionDigits: 0 })} ${sym}`;
+        k(root, "oi-chg").textContent = pct(oiChg, 2);
+        k(root, "oi-chg").className = `num ${cls(oiChg)}`;
+        k(root, "px-chg").textContent = pct(pxChg, 2);
+        k(root, "px-chg").className = `num ${cls(pxChg)}`;
+        k(root, "span").textContent = span;
+        k(root, "span2").textContent = span;
+        k(root, "reading").textContent = r.text;
+        k(root, "reading").className = r.cls;
+        k(root, "reading-note").textContent = r.note;
+        k(root, "chart").innerHTML = `${lines([[vals, "oi-line"], [[...px, +mark.markPrice], "px-line"]], `${sym} open interest and price ${span}`)}
+          <p class="legend-line muted"><i class="sw oi"></i>${esc(sym)} open interest <i class="sw px"></i>Price</p>`;
+        k(root, "updated").textContent = `Updated ${hhmm(new Date())} · refreshes every minute`;
+      } catch (e) {
+        showError(root, e);
+        if (e.status === 400) k(root, "updated").textContent = `Binance has no open interest data for ${sym}.`;
+      }
+    }
+
+    async function loadTable() {
+      try {
+        const [list, tick, prem] = await Promise.all([perps(), get("/fapi/v1/ticker/24hr"), get("/fapi/v1/premiumIndex")]);
+        const allowed = list ? new Set(list) : null;
+        const markOf = new Map(prem.map((x) => [x.symbol, +x.markPrice]));
+        const top = tick.filter((x) => (allowed ? allowed.has(x.symbol) : /USDT$/.test(x.symbol))).sort((a, b) => +b.quoteVolume - +a.quoteVolume).slice(0, 25);
+        const res = await Promise.all(top.map((x) => Promise.all([
+          get(`/futures/data/openInterestHist?symbol=${x.symbol}&period=1h&limit=25`),
+          get(`/fapi/v1/openInterest?symbol=${x.symbol}`),
+        ]).catch(() => null)));
+        rows = top.map((x, i) => {
+          if (!res[i] || !res[i][0].length) return null;
+          const [h, n] = res[i];
+          const cur = +n.openInterest * (markOf.get(x.symbol) || +x.lastPrice);
+          const c1 = (cur / +h[h.length - 1].sumOpenInterestValue - 1) * 100;
+          const c24 = (cur / +h[0].sumOpenInterestValue - 1) * 100;
+          const pxc = +x.priceChangePercent;
+          return { sym: base(x.symbol), oi: cur, c1, c24, px: pxc, r: reading(c24, pxc) };
+        }).filter(Boolean);
+        clearError(root);
+        renderTable();
+      } catch (e) {
+        showError(root, e);
+        if (!rows.length) k(root, "rows").innerHTML = `<tr><td colspan="6" class="muted">No data.</td></tr>`;
+      }
+    }
+
+    function renderTable() {
+      const { key, dir } = sort;
+      const view = [...rows].sort((a, b) => (key === "sym" ? a.sym.localeCompare(b.sym) * dir : (a[key] - b[key]) * dir));
+      k(root, "rows").innerHTML = view.map((r) => `<tr>
+          <th scope="row"><a href="#" data-coin="${esc(r.sym)}">${esc(r.sym)}</a></th>
+          <td class="r num">${money(r.oi)}</td>
+          <td class="r num ${cls(r.c1)}">${pct(r.c1, 1)}</td>
+          <td class="r num ${cls(r.c24)}">${pct(r.c24, 1)}</td>
+          <td class="r num ${cls(r.px)}">${pct(r.px, 1)}</td>
+          <td><span class="tag ${r.r.cls}">${r.r.text}</span></td>
+        </tr>`).join("");
+      $$("[data-sort]", root).forEach((b) => b.setAttribute("aria-sort", b.dataset.sort === key ? (dir > 0 ? "ascending" : "descending") : "none"));
+    }
+
+    root.addEventListener("click", (e) => {
+      const s = e.target.closest("[data-sort]");
+      if (!s) return;
+      const key = s.dataset.sort;
+      sort = sort.key === key ? { key, dir: -sort.dir } : { key, dir: key === "sym" ? 1 : -1 };
+      renderTable();
+    });
+    coinPicker(root, "oi-syms", (s) => { sym = s; loadCoin(); });
+    k(root, "period").addEventListener("change", (e) => { period = e.target.value; loadCoin(); });
+    loadCoin();
+    loadTable();
+    setInterval(loadCoin, 60000);
+    setInterval(loadTable, 300000);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Fear & Greed
+  // ---------------------------------------------------------------------------
+  const SPOT = "https://data-api.binance.vision";
+  const FNG_CLASS = { "Extreme Fear": "ef", Fear: "f", Neutral: "n", Greed: "g", "Extreme Greed": "eg" };
+
+  async function btcDaily(fromMs) {
+    const out = new Map();
+    let start = fromMs;
+    for (let i = 0; i < 6; i++) {
+      const r = await fetch(`${SPOT}/api/v3/klines?symbol=BTCUSDT&interval=1d&limit=1000&startTime=${start}`);
+      if (!r.ok) throw Object.assign(new Error(`HTTP ${r.status}`), { status: r.status });
+      const kl = await r.json();
+      kl.forEach((x) => out.set(x[0], +x[4]));
+      if (kl.length < 1000) break;
+      start = kl[kl.length - 1][0] + 864e5;
+    }
+    return out;
+  }
+
+  function gauge(v, label) {
+    // semicerc 0–100
+    const a = Math.PI * (1 - v / 100);
+    const x = 100 + 80 * Math.cos(a), y = 100 - 80 * Math.sin(a);
+    return `<svg viewBox="0 0 200 118" aria-hidden="true">
+      <defs><linearGradient id="fg" x1="0" x2="1"><stop offset="0" stop-color="#ff3b6b"/><stop offset=".5" stop-color="#8a93a0"/><stop offset="1" stop-color="#00ff9c"/></linearGradient></defs>
+      <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="url(#fg)" stroke-width="14" stroke-linecap="round" opacity=".85"/>
+      <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" fill="#0d0d0d" stroke="#f2f4f7" stroke-width="3"/>
+    </svg>
+    <b class="num">${v}</b><span class="${FNG_CLASS[label] || ""}">${esc(label)}</span>`;
+  }
+
+  function fng(root) {
+    async function load() {
+      let data;
+      try {
+        const r = await fetch("https://api.alternative.me/fng/?limit=0");
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        data = (await r.json()).data.map((x) => ({ v: +x.value, c: x.value_classification, t: +x.timestamp * 1000, next: +x.time_until_update || 0 }));
+      } catch (e) {
+        const el = $("[data-msg]", root);
+        el.hidden = false;
+        el.textContent = "Couldn't reach alternative.me, which publishes the index. Try again in a few minutes.";
+        return;
+      }
+      const [today] = data;
+      k(root, "gauge").innerHTML = gauge(today.v, today.c);
+      k(root, "gauge").setAttribute("aria-label", `Today's Fear and Greed Index: ${today.v}, ${today.c}`);
+      for (const [key, i] of [["d1", 1], ["d7", 7], ["d30", 30]]) {
+        const d = data[i];
+        if (!d) continue;
+        k(root, key).textContent = d.v;
+        k(root, `${key}l`).textContent = d.c;
+        k(root, `${key}l`).className = FNG_CLASS[d.c];
+      }
+      const year = data.slice(0, 365);
+      const vs = year.map((d) => d.v);
+      k(root, "range").textContent = `${Math.min(...vs)}–${Math.max(...vs)}`;
+      k(root, "avg").textContent = `average ${Math.round(vs.reduce((a, b) => a + b, 0) / vs.length)}`;
+      k(root, "updated").textContent = `Today's value from ${new Date(today.t).toLocaleDateString([], { dateStyle: "medium" })}${today.next ? `. Next update in ${dur(today.next * 1000)}` : ""}. Source: alternative.me`;
+
+      let prices;
+      try { prices = await btcDaily(data[data.length - 1].t - 2 * 864e5); } catch { prices = null; }
+      chart(year.slice().reverse(), prices);
+      history(data, prices);
+    }
+
+    function chart(days, prices) {
+      const w = 730, h = 190, n = days.length, bw = w / n;
+      const bars = days.map((d, i) => `<rect x="${(i * bw).toFixed(2)}" y="${(h - (d.v / 100) * h).toFixed(1)}" width="${(bw + 0.3).toFixed(2)}" height="${((d.v / 100) * h).toFixed(1)}" class="${FNG_CLASS[d.c]}"><title>${new Date(d.t).toLocaleDateString([], { dateStyle: "medium" })}: ${d.v} ${d.c}</title></rect>`).join("");
+      let line = "";
+      if (prices) {
+        const ps = days.map((d) => prices.get(d.t)).map((p, i, a) => p ?? a[i - 1]);
+        const ok = ps.filter(isFinite);
+        if (ok.length > 1) {
+          const lo = Math.min(...ok), hi = Math.max(...ok);
+          line = `<polyline class="btc" points="${ps.map((p, i) => (isFinite(p) ? `${(i * bw + bw / 2).toFixed(1)},${(8 + (1 - (p - lo) / (hi - lo)) * (h - 16)).toFixed(1)}` : "")).filter(Boolean).join(" ")}"/>`;
+        }
+      }
+      const first = new Date(days[0].t), last = new Date(days[n - 1].t);
+      const f = (d) => d.toLocaleDateString([], { month: "short", year: "numeric" });
+      k(root, "chart").innerHTML = `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" role="img" aria-label="Fear and Greed Index for the last ${n} days, with the Bitcoin price">${bars}${line}</svg><div class="axis muted"><span>${f(first)}</span><span>${f(last)}</span></div>`;
+    }
+
+    function history(data, prices) {
+      if (!prices) {
+        k(root, "rows").innerHTML = `<tr><td colspan="5" class="muted">Couldn't load Bitcoin's price history from Binance.</td></tr>`;
+        return;
+      }
+      const groups = ["Extreme Fear", "Fear", "Neutral", "Greed", "Extreme Greed"].map((c) => ({ c, n: 0, r7: 0, r30: 0, up: 0 }));
+      const D = 864e5;
+      for (const d of data) {
+        const entry = prices.get(d.t - D), p7 = prices.get(d.t - D + 7 * D), p30 = prices.get(d.t - D + 30 * D);
+        if (!entry || !p7 || !p30) continue;
+        const g = groups.find((x) => x.c === d.c);
+        if (!g) continue;
+        g.n++; g.r7 += p7 / entry - 1; g.r30 += p30 / entry - 1; g.up += p30 > entry ? 1 : 0;
+      }
+      k(root, "rows").innerHTML = groups.map((g) => g.n ? `<tr>
+          <th scope="row"><span class="${FNG_CLASS[g.c]}">${g.c}</span></th>
+          <td class="r num">${g.n.toLocaleString("en-US")}</td>
+          <td class="r num ${cls(g.r7)}">${pct((g.r7 / g.n) * 100, 1)}</td>
+          <td class="r num ${cls(g.r30)}">${pct((g.r30 / g.n) * 100, 1)}</td>
+          <td class="r num">${Math.round((g.up / g.n) * 100)}%</td>
+        </tr>` : "").join("");
+      const since = new Date(data[data.length - 1].t).toLocaleDateString([], { month: "long", year: "numeric" });
+      k(root, "hist-note").textContent = `Based on every daily reading since ${since} with 30 days of price data after it. Entry price: Bitcoin's close on Binance the day before the reading was published. Past results, not a forecast.`;
+    }
+
+    load();
+    setInterval(load, 30 * 60000);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Altcoin season
+  // ---------------------------------------------------------------------------
+  const NOT_ALTS = new Set(["BTC", "STETH", "WETH", "RETH", "METH", "CBETH", "FRXETH", "LSETH", "WEETH", "WSTETH", "RSETH", "EZETH", "WBETH", "LBTC", "TBTC", "WBTC", "CBBTC", "SOLVBTC", "BTC.B", "BTCB",
+    "JLP", "BNSOL", "JITOSOL", "MSOL", "JUPSOL", "KHYPE", "STKAAVE", "WTRX", "WBNB", "PAXG", "XAUT", "DAI", "GHO", "USDS", "SUSDS"]);
+  const notAlt = (c) => NOT_ALTS.has(c.symbol.toUpperCase()) || /USD/i.test(c.symbol) || /\bUSD|dollar|gold|wrapped|staked|restaked|bridged|binance-peg/i.test(c.name);
+
+  async function cached(key, ms, fn) {
+    try {
+      const hit = JSON.parse(sessionStorage.getItem(key) || "null");
+      if (hit && Date.now() - hit.at < ms) return hit.v;
+    } catch {}
+    const v = await fn();
+    try { sessionStorage.setItem(key, JSON.stringify({ at: Date.now(), v })); } catch {}
+    return v;
+  }
+  const json = async (url) => {
+    const r = await fetch(url);
+    if (!r.ok) throw Object.assign(new Error(`HTTP ${r.status}`), { status: r.status });
+    return r.json();
+  };
+
+  function alt(root) {
+    async function load() {
+      try {
+        const [global, coins, spot] = await Promise.all([
+          cached("tw-pap-global", 3e5, () => json("https://api.coinpaprika.com/v1/global")),
+          cached("tw-pap-top", 6e5, () => json("https://api.coinpaprika.com/v1/tickers?limit=200").then((l) => l.map((c) => ({ symbol: c.symbol, name: c.name, rank: c.rank })))),
+          json(`${SPOT}/api/v3/ticker/price`),
+        ]);
+        k(root, "dom").textContent = `${(+global.bitcoin_dominance_percentage).toFixed(1)}%`;
+        const mcap = +global.market_cap_usd;
+        k(root, "mcap").textContent = mcap >= 1e12 ? `$${(mcap / 1e12).toFixed(2)}T` : money(mcap);
+        const mc = +global.market_cap_change_24h;
+        k(root, "mcap-chg").innerHTML = `<span class="${cls(mc)}">${pct(mc, 2)}</span> in 24 hours`;
+
+        const listed = new Set(spot.map((x) => x.symbol));
+        const seen = new Set();
+        const cands = coins.sort((a, b) => a.rank - b.rank).filter((c) => {
+          const s = `${c.symbol.toUpperCase()}USDT`;
+          if (notAlt(c) || !listed.has(s) || seen.has(s)) return false;
+          seen.add(s);
+          return true;
+        }).slice(0, 75);
+
+        const closes = async (sym) => {
+          const kl = await json(`${SPOT}/api/v3/klines?symbol=${sym}USDT&interval=1d&limit=91`);
+          if (kl.length < 91 || Date.now() - kl[kl.length - 1][0] > 2 * 864e5) return null;
+          return (+kl[kl.length - 1][4] / +kl[0][4] - 1) * 100;
+        };
+        const btc = await closes("BTC");
+        const perf = [];
+        for (let i = 0; i < cands.length && perf.length < 50; i += 25) {
+          const batch = cands.slice(i, i + 25);
+          const res = await Promise.all(batch.map((c) => closes(c.symbol.toUpperCase()).catch(() => null)));
+          batch.forEach((c, j) => { if (res[j] !== null && perf.length < 50) perf.push({ sym: c.symbol.toUpperCase(), name: c.name, chg: res[j] }); });
+        }
+        if (btc === null || perf.length < 40) throw new Error("not enough data");
+        clearError(root);
+        const beat = perf.filter((p) => p.chg > btc).length;
+        const index = Math.round((beat / perf.length) * 100);
+        k(root, "index").textContent = index;
+        const label = index >= 75 ? "It's altcoin season." : index <= 25 ? "It's Bitcoin season." : index >= 50 ? "Not altcoin season yet: altcoins are mixed, leaning stronger." : "Not altcoin season: most altcoins are lagging Bitcoin.";
+        k(root, "label").textContent = label;
+        k(root, "index").className = `num ${index >= 75 ? "up" : index <= 25 ? "down" : ""}`;
+        k(root, "pointer").style.left = `${index}%`;
+        k(root, "btc90").textContent = pct(btc, 1);
+        k(root, "btc90").className = `num ${cls(btc)}`;
+        k(root, "beat").textContent = `${beat} of ${perf.length}`;
+        k(root, "updated").textContent = `Calculated ${hhmm(new Date())} from Binance daily closes. Coin ranking and dominance: CoinPaprika`;
+
+        perf.sort((a, b) => b.chg - a.chg);
+        const lo = Math.min(0, btc, ...perf.map((p) => p.chg)), hi = Math.max(0, btc, ...perf.map((p) => p.chg));
+        const x = (v) => ((v - lo) / (hi - lo)) * 100;
+        k(root, "bars").innerHTML = perf.map((p) => `<div class="ab-row" title="${esc(p.name)}">
+            <span class="ab-sym">${esc(p.sym)}</span>
+            <div class="ab-track"><i class="${p.chg > btc ? "up" : "down"}" style="left:${Math.min(x(0), x(p.chg)).toFixed(2)}%;width:${Math.abs(x(p.chg) - x(0)).toFixed(2)}%"></i><b style="left:${x(btc).toFixed(2)}%"></b></div>
+            <span class="num ${cls(p.chg)}">${pct(p.chg, 1)}</span>
+          </div>`).join("") + `<p class="muted ab-key"><i class="sw btcl"></i>Bitcoin ${pct(btc, 1)}</p>`;
+      } catch (e) {
+        const el = $("[data-msg]", root);
+        el.hidden = false;
+        el.textContent = "Couldn't load the prices needed for the index right now. Try again in a minute.";
+      }
+    }
+    load();
+    setInterval(load, 15 * 60000);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Economic calendar
+  // ---------------------------------------------------------------------------
+  const CAL_TYPE = { fomc: "Fed", cpi: "CPI", jobs: "Jobs", opex: "Options" };
+
+  function cal(root) {
+    const events = JSON.parse(k(root, "events").textContent);
+    let type = "all", utc = false;
+    const opt = () => (utc ? { timeZone: "UTC" } : {});
+    const fDate = (t) => new Date(t).toLocaleDateString([], { weekday: "short", month: "short", day: "numeric", ...opt() });
+    const fTime = (t) => new Date(t).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", ...opt() }) + (utc ? " UTC" : "");
+    const fMonth = (t) => new Date(t).toLocaleDateString([], { month: "long", year: "numeric", ...opt() });
+    const LIVE = 2 * 36e5;
+
+    function draw() {
+      const now = Date.now();
+      const view = events.filter((e) => (type === "all" || e.type === type) && e.t > now - LIVE);
+      const next = view.find((e) => e.t > now - LIVE);
+      const box = k(root, "next");
+      if (next) {
+        const live = next.t <= now;
+        box.innerHTML = `<span class="muted">${live ? "Happening now" : "Next up"}</span>
+          <b>${esc(next.title)}</b>
+          <p class="cal-when"><span class="num cd">${live ? "Live" : dur(next.t - now)}</span> <span>${fDate(next.t)}, ${fTime(next.t)}</span></p>
+          <p class="muted">${esc(next.note)}</p>`;
+      } else box.innerHTML = `<b>No upcoming events in this list.</b><p class="muted">New dates are added when the Fed and BLS publish them.</p>`;
+
+      let month = "";
+      k(root, "list").innerHTML = view.slice(0, 40).map((e) => {
+        const m = fMonth(e.t);
+        const head = m !== month ? `<li class="cal-month">${m}</li>` : "";
+        month = m;
+        const live = e.t <= now;
+        return `${head}<li class="cal-ev ${e.type} imp${e.impact}">
+          <span class="cal-d">${fDate(e.t)}<small class="num">${fTime(e.t)}</small></span>
+          <span class="cal-t"><b>${esc(e.title)}</b><small>${esc(e.note)}</small></span>
+          <span class="cal-in num">${live ? "Live" : `in ${dur(e.t - now)}`}</span>
+          <span class="tag t-${e.type}">${CAL_TYPE[e.type]}</span>
+        </li>`;
+      }).join("") || `<li class="muted">Nothing scheduled.</li>`;
+    }
+
+    root.addEventListener("click", (e) => {
+      const t = e.target.closest("[data-type]");
+      if (t) { type = t.dataset.type; setPressed($$("[data-type]", root), t); draw(); }
+      const z = e.target.closest("[data-tz]");
+      if (z) { utc = z.dataset.tz === "utc"; setPressed($$("[data-tz]", root), z); draw(); }
+    });
+    draw();
+    setInterval(() => {
+      const now = Date.now();
+      $$(".cd", root).forEach((el) => {
+        const n = events.find((e) => (type === "all" || e.type === type) && e.t > now - LIVE);
+        if (n) el.textContent = n.t <= now ? "Live" : dur(n.t - now);
+      });
+    }, 1000);
+    setInterval(draw, 60000);
+  }
+
   const tool = $("[data-tool]");
-  if (tool) ({ funding, hours, ls })[tool.dataset.tool]?.(tool);
+  if (tool) ({ funding, hours, ls, oi, fng, alt, cal })[tool.dataset.tool]?.(tool);
 })();

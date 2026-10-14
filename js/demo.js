@@ -271,23 +271,34 @@ if (specimen) {
       set("funding", `${v >= 0 ? "+" : ""}${v.toFixed(4)}%`, v >= 0 ? "up" : "down");
     } catch { set("funding", "See the table", "text"); }
   };
-  const ls = async () => {
+  const fng = async () => {
     try {
-      const r = await (await fetch("https://fapi.binance.com/futures/data/globalLongShortAccountRatio?symbol=BTCUSDT&period=5m&limit=1")).json();
-      const v = parseFloat(r[0].longAccount) * 100;
+      const d = (await (await fetch("https://api.alternative.me/fng/?limit=1")).json()).data[0];
+      if (!d) throw 0;
+      const c = { "Extreme Fear": "down", Fear: "down", Greed: "up", "Extreme Greed": "up" }[d.value_classification] || "";
+      set("fng", `${d.value} ${d.value_classification}`, c);
+    } catch { set("fng", "See the index", "text"); }
+  };
+  const dom = async () => {
+    try {
+      const v = +(await (await fetch("https://api.coinpaprika.com/v1/global")).json()).bitcoin_dominance_percentage;
       if (!Number.isFinite(v)) throw 0;
-      set("ls", `${v.toFixed(1)}%`);
-    } catch { set("ls", "See the ratio", "text"); }
+      set("dom", `${v.toFixed(1)}%`);
+    } catch { set("dom", "See the index", "text"); }
   };
-  const minutesIn = (tz) => {
-    const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", { timeZone: tz, weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date()).map((x) => [x.type, x.value]));
-    return { day: p.weekday, m: +p.hour * 60 + +p.minute };
+  let events = [];
+  try { events = JSON.parse(document.getElementById("tw-events")?.textContent || "[]"); } catch {}
+  const next = () => {
+    const now = Date.now();
+    const e = events.find((x) => x.t > now);
+    if (!e) return set("next", "See the calendar", "text");
+    const m = Math.floor((e.t - now) / 60000), h = Math.floor(m / 60), d = Math.floor(h / 24);
+    const when = d >= 1 ? `in ${d}d ${h % 24}h` : h >= 1 ? `in ${h}h ${m % 60}m` : `in ${m}m`;
+    set("next", `${e.title.replace("US ", "").replace(" rate decision", "")}, ${when}`, "text");
   };
-  const hours = () => {
-    const open = [["Tokyo", "Asia/Tokyo", 540, 900], ["London", "Europe/London", 480, 990], ["New York", "America/New_York", 570, 960]]
-      .filter(([, tz, a, b]) => { const t = minutesIn(tz); return !["Sat", "Sun"].includes(t.day) && t.m >= a && t.m < b; })
-      .map(([n]) => n);
-    set("hours", open.length ? open.join(" + ") : "Crypto only (24/7)", "text");
-  };
-  if (el("funding")) { funding(); ls(); hours(); setInterval(() => { funding(); ls(); hours(); }, 60000); }
+  if (el("funding")) {
+    funding(); fng(); dom(); next();
+    setInterval(() => { funding(); dom(); }, 60000);
+    setInterval(next, 30000);
+  }
 }

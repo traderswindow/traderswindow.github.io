@@ -1,0 +1,622 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Traders Window//Crypto economic calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Crypto economic calendar
+X-WR-CALDESC:FOMC\, CPI\, US jobs report and BTC options expiry. traderswindow.github.io
+REFRESH-INTERVAL;VALUE=DURATION:P1D
+X-PUBLISHED-TTL:P1D
+BEGIN:VEVENT
+UID:fomc-2026-01-28@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260128T190000Z
+DTEND:20260128T200000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-01-30@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260130T080000Z
+DTEND:20260130T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-02-27@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260227T080000Z
+DTEND:20260227T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2026-03-18@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260318T180000Z
+DTEND:20260318T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm\, with new economic projections. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-03-27@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260327T080000Z
+DTEND:20260327T083000Z
+SUMMARY:Quarterly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-04-24@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260424T080000Z
+DTEND:20260424T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2026-04-29@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260429T180000Z
+DTEND:20260429T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-05-29@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260529T080000Z
+DTEND:20260529T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2026-06-17@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260617T180000Z
+DTEND:20260617T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm\, with new economic projections. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-06-26@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260626T080000Z
+DTEND:20260626T083000Z
+SUMMARY:Quarterly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2026-07-29@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260729T180000Z
+DTEND:20260729T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-07-31@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260731T080000Z
+DTEND:20260731T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-08-28@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260828T080000Z
+DTEND:20260828T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2026-09-16@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260916T180000Z
+DTEND:20260916T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm\, with new economic projections. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-09-25@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20260925T080000Z
+DTEND:20260925T083000Z
+SUMMARY:Quarterly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2026-10-28@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20261028T180000Z
+DTEND:20261028T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-10-30@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20261030T080000Z
+DTEND:20261030T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2026-11-06@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20261106T133000Z
+DTEND:20261106T140000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2026-11-10@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20261110T133000Z
+DTEND:20261110T140000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-11-27@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20261127T080000Z
+DTEND:20261127T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2026-12-04@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20261204T133000Z
+DTEND:20261204T140000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2026-12-09@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20261209T190000Z
+DTEND:20261209T200000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm\, with new economic projections. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2026-12-10@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20261210T133000Z
+DTEND:20261210T140000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2026-12-25@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20261225T080000Z
+DTEND:20261225T083000Z
+SUMMARY:Quarterly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-01-08@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270108T133000Z
+DTEND:20270108T140000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-01-13@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270113T133000Z
+DTEND:20270113T140000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2027-01-27@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270127T190000Z
+DTEND:20270127T200000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-01-29@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270129T080000Z
+DTEND:20270129T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-02-05@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270205T133000Z
+DTEND:20270205T140000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-02-11@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270211T133000Z
+DTEND:20270211T140000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-02-26@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270226T080000Z
+DTEND:20270226T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-03-05@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270305T133000Z
+DTEND:20270305T140000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-03-10@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270310T133000Z
+DTEND:20270310T140000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2027-03-17@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270317T180000Z
+DTEND:20270317T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm\, with new economic projections. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-03-26@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270326T080000Z
+DTEND:20270326T083000Z
+SUMMARY:Quarterly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-04-02@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270402T123000Z
+DTEND:20270402T130000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-04-13@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270413T123000Z
+DTEND:20270413T130000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2027-04-28@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270428T180000Z
+DTEND:20270428T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-04-30@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270430T080000Z
+DTEND:20270430T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-05-07@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270507T123000Z
+DTEND:20270507T130000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-05-12@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270512T123000Z
+DTEND:20270512T130000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-05-28@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270528T080000Z
+DTEND:20270528T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-06-04@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270604T123000Z
+DTEND:20270604T130000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2027-06-09@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270609T180000Z
+DTEND:20270609T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm\, with new economic projections. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-06-10@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270610T123000Z
+DTEND:20270610T130000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-06-25@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270625T080000Z
+DTEND:20270625T083000Z
+SUMMARY:Quarterly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-07-02@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270702T123000Z
+DTEND:20270702T130000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-07-14@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270714T123000Z
+DTEND:20270714T130000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2027-07-28@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270728T180000Z
+DTEND:20270728T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-07-30@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270730T080000Z
+DTEND:20270730T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-08-06@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270806T123000Z
+DTEND:20270806T130000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-08-11@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270811T123000Z
+DTEND:20270811T130000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-08-27@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270827T080000Z
+DTEND:20270827T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-09-03@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270903T123000Z
+DTEND:20270903T130000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-09-14@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270914T123000Z
+DTEND:20270914T130000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2027-09-15@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270915T180000Z
+DTEND:20270915T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm\, with new economic projections. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-09-24@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20270924T080000Z
+DTEND:20270924T083000Z
+SUMMARY:Quarterly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-10-08@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271008T123000Z
+DTEND:20271008T130000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-10-14@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271014T123000Z
+DTEND:20271014T130000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2027-10-27@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271027T180000Z
+DTEND:20271027T190000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-10-29@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271029T080000Z
+DTEND:20271029T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-11-05@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271105T123000Z
+DTEND:20271105T130000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-11-10@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271110T133000Z
+DTEND:20271110T140000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-11-26@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271126T080000Z
+DTEND:20271126T083000Z
+SUMMARY:Monthly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:jobs-2027-12-03@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271203T133000Z
+DTEND:20271203T140000Z
+SUMMARY:US jobs report (NFP)
+DESCRIPTION:Nonfarm payrolls and unemployment\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:fomc-2027-12-08@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271208T190000Z
+DTEND:20271208T200000Z
+SUMMARY:FOMC rate decision
+DESCRIPTION:Statement 2:00 pm ET\, press conference 2:30 pm\, with new economic projections. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:cpi-2027-12-10@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271210T133000Z
+DTEND:20271210T140000Z
+SUMMARY:US CPI inflation
+DESCRIPTION:Consumer prices for the previous month\, 8:30 am ET. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+BEGIN:VEVENT
+UID:opex-2027-12-31@traderswindow.github.io
+DTSTAMP:20261014T000000Z
+DTSTART:20271231T080000Z
+DTEND:20271231T083000Z
+SUMMARY:Quarterly BTC & ETH options expiry
+DESCRIPTION:Deribit settlement at 08:00 UTC. https://traderswindow.github.io/tools/crypto-economic-calendar/
+URL:https://traderswindow.github.io/tools/crypto-economic-calendar/
+END:VEVENT
+END:VCALENDAR
