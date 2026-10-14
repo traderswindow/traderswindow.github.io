@@ -529,3 +529,6 @@ table.data tbody tr:hover { background: rgba(255, 255, 255, 0.025); }
 .lsbar { width: 180px; height: 8px; border-radius: 99px; background: rgba(255, 59, 107, 0.65); overflow: hidden; margin: 6px 0 4px; }
 .lsbar span { display: block; height: 100%; background: var(--up); }
 table.data td small { color: var(--muted); font-size: 0.78rem; }
+
+/* tabelele din articole se derulează pe telefon, fără să lățească pagina */
+@media (max-width: 760px) { .prose table { display: block; overflow-x: auto; max-width: 100%; } .prose td, .prose th { min-width: 110px; } }
