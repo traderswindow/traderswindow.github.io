@@ -5,9 +5,9 @@
 The tools load public data straight from Binance, alternative.me and CoinPaprika in the visitor's browser. A written summary of the market is added to each tool page every day around 06:00 UTC, with the date, so the numbers below can be quoted with that date.
 
 <!--snap-->
-## Crypto market on 15 Oct 2026 (14:06 UTC)
+## Crypto market on 15 Oct 2026 (14:07 UTC)
 
-- Bitcoin is at $80,668 (−2.0% in 24 hours) and Ethereum at $2,360 (−3.5%).
+- Bitcoin is at $80,619 (−2.0% in 24 hours) and Ethereum at $2,356 (−3.6%).
 - The Crypto Fear and Greed Index is 53 (Neutral), compared with 62 yesterday, 64 a week ago, 69 a month ago.
 - Bitcoin dominance is 57.3% and the total crypto market is worth $2.81 trillion (−2.6% in 24 hours).
 - The altcoin season index is 62: 31 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's not altcoin season yet (that takes 75).
