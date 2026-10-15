@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://traderswindow.github.io/tools/altcoin-season-index/">
+<title>Altcoin Season Index widget | Traders Window</title>
+<style>
+:root { --bg: #16181b; --fg: #e6eaee; --mu: #8a94a0; --tr: #2a2e33; --ln: #00f0ff; }
+:root.light { --bg: #ffffff; --fg: #15181c; --mu: #5f6873; --tr: #e3e7eb; --ln: #007c85; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font: 14px/1.35 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--ln); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.w { height: 100%; padding: 14px 16px 12px; display: grid; grid-template-rows: auto 1fr auto auto; gap: 6px; border: 1px solid var(--tr); border-radius: 12px; }
+.t { font-weight: 600; font-size: 13px; color: var(--mu); }
+.v { display: flex; align-items: baseline; gap: 10px; }
+.v b { font: 700 40px/1 ui-monospace, "SF Mono", Menlo, monospace; }
+.v span { font-weight: 600; font-size: 17px; }
+.bar { position: relative; height: 8px; border-radius: 99px; background: linear-gradient(90deg, #ff3b6b, #9aa3ad, #00c97b); }
+.alt .bar { background: linear-gradient(90deg, #f7931a 0 25%, var(--tr) 25% 75%, #00c97b 75%); }
+.bar i { position: absolute; top: -4px; width: 4px; height: 16px; margin-left: -2px; border-radius: 2px; background: var(--fg); left: 50%; }
+.f { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--mu); }
+</style>
+</head>
+<body>
+<div class="w alt">
+  <div class="t">Altcoin Season Index</div>
+  <div class="v"><b id="v">…</b><span id="l"></span></div>
+  <div class="bar"><i id="p"></i></div>
+  <div class="f"><span id="s"></span><a href="https://traderswindow.github.io/tools/altcoin-season-index/" target="_blank" rel="noopener">Traders Window</a></div>
+</div>
+<script>
+if (/[?&]theme=light/.test(location.search)) document.documentElement.classList.add("light");
+const $ = (id) => document.getElementById(id);
+function show(v, label, color, sub) { $("v").textContent = v; $("l").textContent = label; $("l").style.color = color; $("p").style.left = v + "%"; $("s").textContent = sub; }
+function fail() { $("l").textContent = "Data unavailable right now"; }
+
+fetch("/data/today.json").then(r => r.json()).then(d => {
+  const i = d.alt.index;
+  show(i, i >= 75 ? "Altcoin season" : i <= 25 ? "Bitcoin season" : "Not altcoin season", i >= 75 ? "#00c97b" : i <= 25 ? "#f7931a" : "#9aa3ad",
+    d.alt.beat + " of top " + d.alt.of + " altcoins beat BTC in 90 days");
+}).catch(fail);
+</script>
+</body>
+</html>

@@ -846,6 +846,101 @@
     setInterval(draw, 60000);
   }
 
+  // ---------------------------------------------------------------------------
+  // Crypto market today
+  // ---------------------------------------------------------------------------
+  function today(root) {
+    const set = (key, val, sub, c = "") => {
+      const el = k(root, key);
+      el.textContent = val;
+      el.className = `num ${c}`;
+      k(root, `${key}-s`).innerHTML = sub || "";
+    };
+    const chg = (x, d = 1) => `<span class="${cls(x)}">${pct(x, d)}</span> in 24h`;
+    const big = (v) => (v >= 1e12 ? `$${(v / 1e12).toFixed(2)}T` : money(v));
+    let snap = null;
+    const morning = "this morning's value";
+
+    async function load() {
+      snap = snap || (await fetch("/data/today.json", { cache: "no-cache" }).then((r) => r.json()).catch(() => null));
+      const S = snap || {};
+      let blocked = false;
+      await Promise.all([
+        json(`${SPOT}/api/v3/ticker/24hr?symbols=${encodeURIComponent('["BTCUSDT","ETHUSDT"]')}`).then((t) => {
+          const p = Object.fromEntries(t.map((x) => [x.symbol, x]));
+          set("btc", `$${price(+p.BTCUSDT.lastPrice)}`, chg(+p.BTCUSDT.priceChangePercent));
+          set("eth", `$${price(+p.ETHUSDT.lastPrice)}`, chg(+p.ETHUSDT.priceChangePercent));
+        }).catch(() => {
+          if (S.market) { set("btc", `$${price(S.market.btc.price)}`, morning); set("eth", `$${price(S.market.eth.price)}`, morning); }
+        }),
+        json("https://api.alternative.me/fng/?limit=1").then((d) => {
+          const f = d.data[0];
+          set("fng", f.value, `<span class="${FNG_CLASS[f.value_classification] || ""}">${esc(f.value_classification)}</span>`);
+        }).catch(() => { if (S.fng) set("fng", S.fng.today.value, `${esc(S.fng.today.label)}, ${morning}`); }),
+        cached("tw-pap-global", 3e5, () => json("https://api.coinpaprika.com/v1/global")).then((g) => {
+          set("dom", `${(+g.bitcoin_dominance_percentage).toFixed(1)}%`, `Total market ${big(+g.market_cap_usd)}, ${chg(+g.market_cap_change_24h)}`);
+        }).catch(() => { if (S.market) set("dom", `${S.market.dom.toFixed(1)}%`, morning); }),
+        get("/fapi/v1/premiumIndex?symbol=BTCUSDT").then((b) => {
+          const r = +b.lastFundingRate * 100;
+          set("fund", pct(r), `About ${pct(r * 3 * 365, 0)} a year, ${r >= 0 ? "longs pay" : "shorts pay"}`, cls(r));
+        }).catch((e) => {
+          blocked = blocked || e.status === 451 || e.status === 403;
+          if (S.futures) set("fund", pct(S.futures.btcFunding), morning, cls(S.futures.btcFunding));
+        }),
+        get("/futures/data/openInterestHist?symbol=BTCUSDT&period=1h&limit=25").then((oi) => {
+          const a = +oi[oi.length - 1].sumOpenInterestValue, b = +oi[0].sumOpenInterestValue;
+          set("oi", pct((a / b - 1) * 100, 1), `${money(a)} open`, cls(a - b));
+        }).catch(() => { if (S.futures) set("oi", pct(S.futures.btcOIchg, 1), `${money(S.futures.btcOI)}, ${morning}`, cls(S.futures.btcOIchg)); }),
+        get("/futures/data/globalLongShortAccountRatio?symbol=BTCUSDT&period=1h&limit=1").then((l) => {
+          set("ls", `${(+l[0].longAccount * 100).toFixed(1)}%`, `Long/short ratio ${(+l[0].longShortRatio).toFixed(2)}`);
+        }).catch(() => { if (S.futures) set("ls", `${S.futures.longPct.toFixed(1)}%`, morning); }),
+      ]);
+      if (S.alt) {
+        const i = S.alt.index;
+        set("alt", i, i >= 75 ? "Altcoin season" : i <= 25 ? "Bitcoin season" : "Not altcoin season", i >= 75 ? "up" : i <= 25 ? "down" : "");
+        k(root, "alt-l").textContent = "Calculated this morning";
+      }
+      k(root, "updated").textContent = `Updated ${hhmm(new Date())}. Prices and Binance data refresh every minute.${blocked ? " Binance futures data is blocked in your country, so those cards show this morning's values." : ""}`;
+    }
+
+    const events = JSON.parse(k(root, "events").textContent);
+    const drawNext = () => {
+      const now = Date.now();
+      k(root, "next").innerHTML = events.filter((e) => e.t > now).slice(0, 4).map((e) => `<li class="cal-ev ${e.type}">
+          <span class="cal-d">${new Date(e.t).toLocaleDateString([], { weekday: "short", month: "short", day: "numeric" })}<small class="num">${new Date(e.t).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}</small></span>
+          <span class="cal-t"><b>${esc(e.title)}</b></span>
+          <span class="cal-in num">in ${dur(e.t - now)}</span>
+          <span class="tag t-${e.type}">${CAL_TYPE[e.type]}</span>
+        </li>`).join("") || `<li class="muted">Nothing scheduled.</li>`;
+    };
+    load();
+    drawNext();
+    setInterval(load, 60000);
+    setInterval(drawNext, 30000);
+  }
+
+  // „Put this on your website”: codul de copiat, cu tema aleasă
+  const embed = $(".embed");
+  if (embed) {
+    const { src, url, name, h } = embed.dataset;
+    let theme = "dark";
+    const draw = () => {
+      const s = theme === "light" ? `${src}?theme=light` : src;
+      k(embed, "code").value = `<iframe src="${s}" width="320" height="${h}" style="border:0;border-radius:12px;max-width:100%" title="${name.replace("&", "&amp;")}" loading="lazy"></iframe>\n<p style="font:13px system-ui,sans-serif;margin:4px 0 0"><a href="${url}">${name.replace("&", "&amp;")}</a> by Traders Window</p>`;
+      if (k(embed, "preview").getAttribute("src") !== s) k(embed, "preview").src = s;
+    };
+    embed.addEventListener("click", async (e) => {
+      const b = e.target.closest("[data-theme]");
+      if (b) { theme = b.dataset.theme; setPressed($$("[data-theme]", embed), b); draw(); }
+      if (e.target.closest('[data-k="copy"]')) {
+        const ta = k(embed, "code");
+        try { await navigator.clipboard.writeText(ta.value); } catch { ta.select(); document.execCommand("copy"); }
+        k(embed, "copied").textContent = "Copied. Paste it into your page's HTML.";
+      }
+    });
+    draw();
+  }
+
   const tool = $("[data-tool]");
-  if (tool) ({ funding, hours, ls, oi, fng, alt, cal })[tool.dataset.tool]?.(tool);
+  if (tool) ({ funding, hours, ls, oi, fng, alt, cal, today })[tool.dataset.tool]?.(tool);
 })();

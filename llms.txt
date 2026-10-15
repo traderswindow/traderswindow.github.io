@@ -1,0 +1,61 @@
+# Traders Window
+
+> Free live crypto market tools in the browser (Binance funding rates, open interest, long/short ratio, Crypto Fear & Greed Index, altcoin season index, an economic calendar with FOMC/CPI/jobs report dates, crypto market hours), plus a free always-on-top crypto price widget for macOS. No account, no ads, no tracking.
+
+The tools load public data straight from Binance, alternative.me and CoinPaprika in the visitor's browser. A written summary of the market is added to each tool page every day around 06:00 UTC, with the date, so the numbers below can be quoted with that date.
+
+<!--snap-->
+## Crypto market on 15 Oct 2026 (08:18 UTC)
+
+- Bitcoin is at $81,202 (−3.1% in 24 hours) and Ethereum at $2,366 (−6.0%).
+- The Crypto Fear and Greed Index is 53 (Neutral), compared with 62 yesterday, 64 a week ago, 69 a month ago.
+- Bitcoin dominance is 57.4% and the total crypto market is worth $2.84 trillion (−3.3% in 24 hours).
+- The altcoin season index is 62: 31 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's not altcoin season yet (that takes 75).
+- BTC funding on Binance is +0.0061% every 8 hours (+6.7% a year), so longs pay shorts. ETH funding is +0.0002%.
+- BTC open interest on Binance is $7.49 billion, −2.2% in 24 hours.
+- 64.3% of Binance accounts holding a BTC futures position are long (long/short ratio 1.80).
+- Next: FOMC rate decision, Wed 28 Oct at 18:00 UTC (in 13 days). After that: US jobs report (NFP) on Fri 6 Nov; US CPI inflation on Tue 10 Nov; US jobs report (NFP) on Fri 4 Dec.
+<!--/snap-->
+
+## Free tools
+
+- [Crypto market today](https://traderswindow.github.io/tools/crypto-market-today/): The crypto market today on one page: Bitcoin and Ethereum price, Fear & Greed, Bitcoin dominance, altcoin season, BTC funding, open interest, long/short ratio and the next big event.
+- [Binance funding rates, live](https://traderswindow.github.io/tools/funding-rates/): Live funding rates for every Binance USDT perpetual: current rate, annualized, interval and countdown to the next payment, plus a calculator for what funding costs you.
+- [Open interest, live](https://traderswindow.github.io/tools/open-interest/): Live open interest for Binance USDT perpetuals: value in dollars, 1-hour and 24-hour change, the trend over time and what each combination of price and open interest means.
+- [Long/short ratio, live](https://traderswindow.github.io/tools/long-short-ratio/): Live long/short ratio from Binance Futures for BTC, ETH and any altcoin: all accounts, top traders and taker buy/sell volume, with the trend over time.
+- [Crypto Fear & Greed Index](https://traderswindow.github.io/tools/crypto-fear-and-greed-index/): Today's Crypto Fear and Greed Index with yesterday, last week and last month, a one-year chart against the Bitcoin price, and how Bitcoin did after each reading since 2018.
+- [Altcoin season index](https://traderswindow.github.io/tools/altcoin-season-index/): Is it altcoin season? A live index of how many of the top 50 altcoins beat Bitcoin over the last 90 days, plus Bitcoin dominance and the total crypto market cap.
+- [Crypto economic calendar](https://traderswindow.github.io/tools/crypto-economic-calendar/): The scheduled events that move Bitcoin: FOMC rate decisions, US CPI inflation, the jobs report and BTC options expiry, with countdowns in your time zone and a calendar you can subscribe to.
+- [Crypto market hours](https://traderswindow.github.io/tools/crypto-market-hours/): Crypto trades 24/7, but its volume follows the stock markets. See which sessions are open right now, in your time zone: Tokyo, London, New York and CME Bitcoin futures.
+
+## Guides
+
+- [What is the funding rate in crypto?](https://traderswindow.github.io/learn/funding-rate/): What the funding rate on crypto perpetual futures is, who pays whom, how to read positive, negative and extreme funding, and what a funding flip means.
+- [What is open interest, and how do you read it with price?](https://traderswindow.github.io/learn/open-interest/): Open interest explained: how it differs from volume, the four price and open interest combinations, and what rising or falling OI tells a crypto trader.
+- [Crypto liquidations: what they are and how to read them](https://traderswindow.github.io/learn/liquidations/): How crypto futures liquidations work, why they cascade, what long and short liquidation data tells you, and how to watch your own liquidation distance.
+- [How to set crypto price alerts on a Mac that you won't miss](https://traderswindow.github.io/learn/crypto-price-alerts-mac/): Ways to get crypto price alerts on macOS, why most of them get missed, and how to set up on-screen alerts in dollars, percent or volatility with Traders Window.
+- [TradingView alert limits, and how to get unlimited price alerts](https://traderswindow.github.io/learn/tradingview-alert-limits/): Why TradingView caps your active alerts, what to keep there, and how to get unlimited price, % and volatility alerts on your Mac for free.
+- [How to get an alert when the funding rate flips or spikes](https://traderswindow.github.io/learn/funding-rate-alerts/): Get alerted when a crypto perpetual's funding rate flips sign or reaches an extreme, with a countdown to the next payment, on your Mac and phone.
+- [Liquidation alerts: catch cascades and protect your own position](https://traderswindow.github.io/learn/liquidation-alerts/): Get alerted when a wave of crypto liquidations hits a coin, and when your own futures position gets close to its liquidation price.
+- [How to keep a crypto price on top of full-screen apps on a Mac](https://traderswindow.github.io/learn/crypto-price-over-full-screen-mac/): Why most Mac widgets disappear when a chart goes full screen, and how to keep a live crypto price floating on top of every app, including full-screen ones.
+- [Menu bar crypto ticker or floating widget: which one to use](https://traderswindow.github.io/learn/menu-bar-ticker-vs-floating-widget/): An honest comparison of Mac menu bar crypto tickers and floating price widgets: what each is good at, update speed, alerts and full-screen behavior.
+- [How to set a daily loss limit for crypto trading, and actually stick to it](https://traderswindow.github.io/learn/daily-loss-limit/): What a daily loss limit is, how to size it, and how to keep it in view with a widget that turns red when you hit it, trade caps and a cooldown after losses.
+- [Crypto trading sessions: when Asia, London and New York are open](https://traderswindow.github.io/learn/crypto-trading-sessions/): Crypto trades 24/7, but activity doesn't. The Asia, London and New York session hours in UTC, summer and winter, the overlaps, and the other daily times that matter.
+- [The Crypto Fear & Greed Index: what it measures and how to use it](https://traderswindow.github.io/learn/fear-and-greed-index/): What goes into the Crypto Fear & Greed Index, how to read extreme fear and extreme greed, why it works better as context than as a signal, and where to see it.
+- [Bitcoin dominance: what it is and how to read it](https://traderswindow.github.io/learn/bitcoin-dominance/): What Bitcoin dominance (BTC.D) measures, how to read it together with the Bitcoin price, why stablecoins distort it, and why different sites show different numbers.
+- [Volatility-based price alerts: why one percentage doesn't fit every coin](https://traderswindow.github.io/learn/volatility-alerts/): Why a fixed percentage alert is too noisy for small coins and too quiet for Bitcoin, and how alerts measured in σ, each coin's normal hourly move, fix it.
+- [Order flow for crypto traders: taker buying, selling and large trades](https://traderswindow.github.io/learn/order-flow-large-trades/): What taker buy and sell volume shows, how to read a 5-minute order flow bar, and how to spot large trades on Binance futures, with the limits of public trade data.
+- [How to create a read-only Binance API key, and keep it safe](https://traderswindow.github.io/learn/binance-read-only-api-key/): Step by step: create a Binance API key that can only read your account, which permissions to leave off, where to store it, and what to do if it leaks.
+- [Revenge trading: how to spot it and how to stop](https://traderswindow.github.io/learn/revenge-trading/): What revenge trading is, the warning signs, why it happens after a loss, and practical rules that stop it: cooldowns, trade caps and a daily loss limit you can see.
+- [Crypto price apps for Mac compared (2026)](https://traderswindow.github.io/learn/crypto-price-apps-mac/): Coin Tick, TickerPad, CoinBar, Crypto Drop, Bitcoin Ticker Widget and Traders Window compared: where each shows prices, price, data source, alerts and full-screen behavior.
+
+## The Mac app
+
+- [Traders Window for macOS](https://traderswindow.github.io/): free floating widget that stays on top of full-screen apps, with live Binance prices, funding, open interest, liquidations and alerts in $, % or volatility. macOS 13+, Apple silicon and Intel.
+- [Install guide](https://traderswindow.github.io/install/): the app isn't signed with a paid Apple certificate, so macOS asks you to allow it once.
+- [Phone alerts](https://traderswindow.github.io/phone-alerts/): forward the widget's alerts to your phone with ntfy.
+
+## Optional
+
+- [Embeddable widgets](https://traderswindow.github.io/tools/crypto-fear-and-greed-index/#embed): free Fear & Greed and altcoin season widgets for other websites.
+- [Subscribable calendar](https://traderswindow.github.io/calendar/crypto-events.ics): FOMC, CPI, jobs report and BTC options expiry as an .ics feed.

@@ -655,3 +655,36 @@ table.data td small { color: var(--muted); font-size: 0.78rem; }
   .cal-d { grid-column: 1; } .cal-t { grid-column: 1 / -1; grid-row: 2; } .cal-in { grid-column: 2; grid-row: 1; } .cal-ev .tag { display: none; }
   .cal-sub { grid-template-columns: 1fr; }
 }
+
+/* rezumatul zilnic (scris de .github/snapshot.mjs) */
+.snap { max-width: var(--measure); margin: 0 0 32px; padding: 16px 20px; border-radius: 12px; background: var(--surface); border-left: 3px solid var(--cyan); display: grid; gap: 8px; }
+.snap p { margin: 0; color: #c9d0d7; }
+.snap p b { color: var(--paper); }
+.snap .snap-h { color: var(--muted); font-size: 0.85rem; }
+
+/* crypto market today */
+.ts-sub { font-size: 0.88rem; min-height: 1.3em; }
+.mt-cards { margin-bottom: 12px; }
+.mt-cards a { gap: 12px; }
+.mt-next { margin-bottom: 14px; }
+
+/* widget de pus pe alte site-uri */
+.embed { margin: 48px 0 8px; padding: 24px; border-radius: 16px; background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.06); }
+.embed h2 { margin-top: 0; }
+.embed > p { color: #b8c0c9; max-width: var(--measure); }
+.embed-grid { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 24px; align-items: start; margin-top: 18px; }
+.embed iframe { border: 0; border-radius: 12px; max-width: 100%; background: transparent; }
+.embed-code { display: grid; gap: 12px; min-width: 0; }
+.embed textarea { width: 100%; resize: vertical; font: 0.8rem/1.5 var(--mono); color: var(--paper); background: var(--ink); border: 1px solid var(--faint); border-radius: 10px; padding: 12px; }
+.embed textarea:focus { border-color: var(--cyan); outline: none; }
+.embed-code p { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+@media (max-width: 760px) { .embed { padding: 18px; } .embed-grid { grid-template-columns: 1fr; } }
+.snap p { font-size: 0.95rem; }
+@media (max-width: 560px) {
+  .mt-cards { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .mt-cards a { padding: 14px; gap: 8px; }
+  .mt-cards b { font-size: 0.95rem; }
+  .mt-cards .ts-live .num { font-size: 1.25rem; }
+  .mt-cards .ts-live small, .mt-cards .ts-sub { font-size: 0.78rem; }
+  .snap { padding: 14px 16px; }
+}
