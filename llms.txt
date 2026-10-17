@@ -5,16 +5,16 @@
 The tools load public data straight from Binance, alternative.me and CoinPaprika in the visitor's browser. A written summary of the market is added to each tool page every day around 06:00 UTC, with the date, so the numbers below can be quoted with that date.
 
 <!--snap-->
-## Crypto market on 16 Oct 2026 (06:41 UTC)
+## Crypto market on 17 Oct 2026 (06:36 UTC)
 
-- Bitcoin is at $82,163 (+1.4% in 24 hours) and Ethereum at $2,449 (+3.6%).
-- The Crypto Fear and Greed Index is 63 (Greed), compared with 53 yesterday, 59 a week ago, 51 a month ago.
-- Bitcoin dominance is 57.1% and the total crypto market is worth $2.89 trillion (+2.0% in 24 hours).
-- The altcoin season index is 76: 38 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's altcoin season.
+- Bitcoin is at $81,600 (−0.7% in 24 hours) and Ethereum at $2,432 (−0.7%).
+- The Crypto Fear and Greed Index is 55 (Greed), compared with 63 yesterday, 64 a week ago, 50 a month ago.
+- Bitcoin dominance is 57.2% and the total crypto market is worth $2.89 trillion (0.0% in 24 hours).
+- The altcoin season index is 74: 37 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's not altcoin season yet (that takes 75).
 - BTC funding on Binance is −0.0005% every 8 hours (−0.6% a year), so shorts pay longs. ETH funding is +0.0056%.
 - BTC open interest on Binance is $8.02 billion, +5.6% in 24 hours.
 - 64.5% of Binance accounts holding a BTC futures position are long (long/short ratio 1.82).
-- Next: FOMC rate decision, Wed 28 Oct at 18:00 UTC (in 12 days). After that: US jobs report (NFP) on Fri 6 Nov; US CPI inflation on Tue 10 Nov; US jobs report (NFP) on Fri 4 Dec.
+- Next: FOMC rate decision, Wed 28 Oct at 18:00 UTC (in 11 days). After that: US jobs report (NFP) on Fri 6 Nov; US CPI inflation on Tue 10 Nov; US jobs report (NFP) on Fri 4 Dec.
 <!--/snap-->
 
 ## Free tools
