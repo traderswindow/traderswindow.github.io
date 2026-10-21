@@ -100,6 +100,59 @@ async function futures() {
   };
 }
 
+// Analiza tehnică: aceeași logică ca pagina (js/ta-core.js), pentru cele 20 de monede ale ei
+const TA = await import(`data:text/javascript;base64,${Buffer.from(readFileSync(join(ROOT, "js", "ta-core.js"))).toString("base64")}`).catch(() => null);
+async function dailyCloses(sym) {
+  const out = [];
+  let start = Date.UTC(2017, 0, 1);
+  for (let i = 0; i < 8; i++) {
+    const kl = await get(`${SPOT}/api/v3/klines?symbol=${sym}USDT&interval=1d&limit=1000&startTime=${start}`);
+    kl.forEach((x) => { if (x[6] < NOW) out.push({ t: x[0], c: +x[4] }); });
+    if (kl.length < 1000) break;
+    start = kl[kl.length - 1][0] + 864e5;
+  }
+  return out;
+}
+async function technical() {
+  const coins = {}, closes = {};
+  for (let i = 0; i < TA.COINS.length; i += 5) {
+    const batch = TA.COINS.slice(i, i + 5);
+    const res = await Promise.all(batch.map((s) => dailyCloses(s).catch(() => null)));
+    batch.forEach((s, j) => {
+      if (!res[j] || !res[j].length) return;
+      closes[s] = res[j];
+      coins[s] = {};
+      for (const h of TA.HORIZONS) {
+        const a = TA.analyze(res[j], h);
+        if (a.ok) coins[s][h] = { v: a.verdict, p: a.p, base: a.base, cases: a.cases, indep: a.indep, lo: a.lo, hi: a.hi, price: a.price, trend: a.trend, at: a.at };
+      }
+    });
+  }
+  if (!coins.BTC) throw new Error("fără BTC");
+  return { at: NOW, coins, closes };
+}
+
+// Jurnalul public al citirilor: [zi, monedă, orizont, verdict, preț, interval jos, interval sus, prețul după orizont]
+const sig = (x) => +x.toPrecision(6);
+function taLog(T) {
+  const p = join(ROOT, "data", "ta-log.json");
+  let log;
+  try { log = JSON.parse(readFileSync(p, "utf8")); } catch { log = { start: iso(NOW), e: [] }; }
+  const have = new Set(log.e.map((x) => `${x[0]} ${x[1]} ${x[2]}`));
+  for (const [s, hs] of Object.entries(T.coins)) for (const [h, a] of Object.entries(hs)) {
+    const row = [iso(a.at), s, +h, a.v, sig(a.price), sig(a.lo), sig(a.hi), null];
+    if (!have.has(`${row[0]} ${s} ${row[2]}`)) log.e.push(row);
+  }
+  for (const x of log.e) {
+    if (x[7] != null || !T.closes[x[1]]) continue;
+    const target = Date.parse(x[0]) + x[2] * 864e5;
+    const c = T.closes[x[1]].find((k) => k.t === target);
+    if (c) x[7] = sig(c.c);
+  }
+  writeFileSync(p, JSON.stringify(log));
+  return log;
+}
+
 // Evenimentele vin din calendarul .ics generat de site (același dosar)
 function events() {
   const p = join(ROOT, "calendar", "crypto-events.ics");
@@ -134,6 +187,23 @@ const calLine = (ev) => {
   return `Next: <b>${n.title}, ${dayShort(n.t)} at ${hm(n.t)} UTC</b> (${when}).${rest.length ? ` After that: ${rest.map((e) => `${e.title} on ${dayShort(e.t)}`).join("; ")}.` : ""}`;
 };
 
+const TA_LABEL = { up: "Leaning up", down: "Leaning down", side: "Sideways", none: "No clear direction", few: "Not enough history" };
+const TA_NAME = { BTC: "Bitcoin", ETH: "Ethereum", SOL: "Solana", XRP: "XRP", BNB: "BNB", DOGE: "Dogecoin", ADA: "Cardano", TRX: "TRON", AVAX: "Avalanche", LINK: "Chainlink", SUI: "Sui", TON: "Toncoin", DOT: "Polkadot", LTC: "Litecoin", BCH: "Bitcoin Cash", NEAR: "NEAR", APT: "Aptos", UNI: "Uniswap", AAVE: "Aave", PEPE: "Pepe" };
+const pc = (x) => `${Math.round(x * 100)}%`;
+const rng = (a) => `${sign((a.lo / a.price - 1) * 100, 1)}% to ${sign((a.hi / a.price - 1) * 100, 1)}%`;
+const taOne = (s, a) => {
+  const n = TA_NAME[s] || s;
+  if (a.v === "up" || a.v === "down" || a.v === "side" || a.v === "none") return `${n} <b>${TA_LABEL[a.v]}</b> (higher 7 days later in ${pc(a.p)} of ${a.cases.toLocaleString("en-US")} similar days, ${pc(a.base)} on an ordinary day; likely range ${rng(a)})`;
+  return `${n} <b>${TA_LABEL[a.v]}</b>`;
+};
+const taLine = (T) => {
+  const w = (s) => T.coins[s] && T.coins[s][7];
+  const main = ["BTC", "ETH"].filter(w).map((s) => taOne(s, w(s)));
+  const rest = Object.keys(T.coins).filter((s) => s !== "BTC" && s !== "ETH" && w(s)).map((s) => `${TA_NAME[s] || s} ${TA_LABEL[w(s).v].toLowerCase()}`);
+  const at = w("BTC") ? w("BTC").at : T.at;
+  return `Technical readings for the next 7 days, from the daily close of ${day(at)}: ${main.join("; ")}.${rest.length ? ` Other coins: ${rest.join(", ")}.` : ""}`;
+};
+
 // ---------------------------------------------------------------------------
 // Scriere în pagini
 // ---------------------------------------------------------------------------
@@ -143,9 +213,11 @@ let prev = {};
 try { prev = JSON.parse(readFileSync(prevPath, "utf8")); } catch {}
 const keep = (name, fresh) => (fresh ? fresh : prev[name] && NOW - prev[name].at < MAX_AGE ? prev[name] : null);
 
-const [F, M, A, X] = await Promise.all([safe("fng", fng), safe("market", market), safe("alt", altseason), safe("futures", futures)]);
-const D = { updated: NOW, fng: keep("fng", F), market: keep("market", M), alt: keep("alt", A), futures: keep("futures", X), events: events() };
+const [F, M, A, X, T] = await Promise.all([safe("fng", fng), safe("market", market), safe("alt", altseason), safe("futures", futures), TA ? safe("ta", technical) : null]);
 mkdirSync(join(ROOT, "data"), { recursive: true });
+if (T) taLog(T);
+const taKeep = T ? { at: T.at, coins: T.coins } : null;
+const D = { updated: NOW, fng: keep("fng", F), market: keep("market", M), alt: keep("alt", A), futures: keep("futures", X), ta: keep("ta", taKeep), events: events() };
 writeFileSync(prevPath, JSON.stringify(D));
 
 const lines = {
@@ -157,16 +229,18 @@ const lines = {
   oi: D.futures && oiLine(D.futures),
   ls: D.futures && lsLine(D.futures),
   cal: calLine(D.events),
+  ta: D.ta && taLine(D.ta),
 };
 // ce apare pe fiecare pagină
 const BLOCKS = {
-  today: ["px", "fng", "mkt", "alt", "fund", "oi", "ls", "cal"],
+  today: ["px", "fng", "mkt", "alt", "fund", "oi", "ls", "cal", "ta"],
   fng: ["fng", "px"],
   alt: ["alt", "mkt"],
   funding: ["fund", "px"],
   oi: ["oi", "px"],
   ls: ["ls", "fund"],
   cal: ["cal"],
+  ta: ["ta", "px"],
 };
 const stamp = `<p class="snap-h">Snapshot of <time datetime="${new Date(NOW).toISOString()}">${day(NOW)}, ${hm(NOW)} UTC</time>. Written every morning; the live numbers on this page refresh on their own.</p>`;
 const block = (key) => {
@@ -181,6 +255,7 @@ const FAQ = [
   ["The live index is at the top of this page.", D.alt && `As of ${day(NOW)}, the index is ${D.alt.index}, so ${altVerdict(D.alt.index)}.`],
   ["It's shown live on this page:", D.market && `As of ${day(NOW)}, it's ${D.market.dom.toFixed(1)}%.`],
   ["The next date and a live countdown are at the top of this page.", (() => { const f = D.events.find((e) => /FOMC/.test(e.title)); return f && `As of ${day(NOW)}, the next FOMC decision is on ${dayShort(f.t)} at ${hm(f.t)} UTC.`; })()],
+  ["Nobody knows, and any site that says it does is guessing.", D.ta && D.ta.coins.BTC && D.ta.coins.BTC[7] && `As of ${day(NOW)}, the 7-day reading for Bitcoin is ${TA_LABEL[D.ta.coins.BTC[7].v]}: in similar setups it was higher 7 days later ${pc(D.ta.coins.BTC[7].p)} of the time, against ${pc(D.ta.coins.BTC[7].base)} on an ordinary day.`],
   ["The live overview is at the top of this page.", D.market && D.fng && `As of ${day(NOW)}, ${plain(pxLine(D.market))} The Fear and Greed Index is ${D.fng.today.value} (${D.fng.today.label}).`],
 ];
 const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -227,4 +302,4 @@ if (existsSync(llms)) {
   writeFileSync(llms, t);
 }
 
-console.log(`snapshot: ${touched.size} pagini; fng ${D.fng ? "ok" : "—"}, piață ${D.market ? "ok" : "—"}, altseason ${D.alt ? "ok" : "—"}, futures ${D.futures ? (X ? "ok" : "de ieri") : "—"}`);
+console.log(`snapshot: ${touched.size} pagini; fng ${D.fng ? "ok" : "—"}, piață ${D.market ? "ok" : "—"}, altseason ${D.alt ? "ok" : "—"}, futures ${D.futures ? (X ? "ok" : "de ieri") : "—"}, analiză tehnică ${T ? "ok" : "—"}`);

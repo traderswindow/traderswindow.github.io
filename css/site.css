@@ -688,3 +688,33 @@ table.data td small { color: var(--muted); font-size: 0.78rem; }
   .mt-cards .ts-live small, .mt-cards .ts-sub { font-size: 0.78rem; }
   .snap { padding: 14px 16px; }
 }
+
+/* Analiza tehnică */
+.ta-top { display: grid; grid-template-columns: minmax(240px, 340px) minmax(0, 1fr); gap: 20px; margin-top: 20px; }
+.ta-verdict { display: grid; gap: 8px; align-content: start; padding: 22px; border-radius: 16px; background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.06); }
+.ta-verdict > span { color: var(--muted); font-size: 0.88rem; }
+.ta-verdict b { font: 700 clamp(1.9rem, 3.4vw, 2.4rem)/1.05 var(--display); }
+.ta-verdict p { line-height: 1.5; }
+.ta-verdict small { color: var(--muted); font-size: 0.78rem; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 10px; }
+.ta-stats { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+.ta-stats i { font-style: normal; }
+.tool .ta-stats b span { font-size: inherit; margin-right: 8px; }
+.tool .ta-stats b .up { color: var(--up); } .tool .ta-stats b .down { color: var(--down); }
+.ta-chart { margin-top: 20px; padding: 18px; border-radius: 16px; background: var(--surface); border: 1px solid rgba(255, 255, 255, 0.06); }
+.ta-chart svg { width: 100%; height: auto; display: block; }
+.ta-chart polyline { fill: none; stroke-linejoin: round; }
+.ta-chart .px { stroke: var(--paper); stroke-width: 1.6; }
+.ta-chart .ma200 { stroke: #ffc45c; stroke-width: 1.4; }
+.ta-chart .ma50 { stroke: var(--cyan); stroke-width: 1.2; stroke-dasharray: 4 3; opacity: 0.8; }
+.ta-chart .cone { fill: rgba(0, 240, 255, 0.14); stroke: rgba(0, 240, 255, 0.5); stroke-width: 1; }
+.ta-chart .now { stroke: var(--faint); stroke-dasharray: 2 3; }
+.ta-chart text { font: 500 11px var(--mono); }
+.ta-chart text.hi { fill: var(--up); } .ta-chart text.lo { fill: var(--down); }
+.ta-chart text.ax { fill: var(--muted); }
+.sw.ma200 { background: #ffc45c; height: 3px; } .sw.ma50 { background: var(--cyan); height: 3px; } .sw.cone { background: rgba(0, 240, 255, 0.3); }
+.ta-why { display: grid; gap: 8px; padding: 0; list-style: none; margin-top: 12px; }
+.ta-why li { position: relative; padding: 10px 14px 10px 30px; border-radius: 10px; background: var(--surface); line-height: 1.5; }
+.ta-why li::before { content: ""; position: absolute; left: 13px; top: 1.05em; width: 7px; height: 7px; border-radius: 50%; background: var(--faint); }
+.ta-why li.up::before { background: var(--up); } .ta-why li.down::before { background: var(--down); }
+.ta-why li.up, .ta-why li.down { color: var(--paper); }
+@media (max-width: 760px) { .ta-top { grid-template-columns: 1fr; } }
