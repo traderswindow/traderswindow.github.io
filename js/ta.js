@@ -57,6 +57,7 @@ async function coinbase(sym) {
   }
   return [...out].sort((a, b) => a[0] - b[0]).map(([t, c]) => ({ t, c }));
 }
+const lastClosedDay = () => Math.floor(Date.now() / D) * D - D;
 async function daily(sym) {
   const key = `ta:${sym}:${dayKey(Date.now())}`;
   try { const hit = JSON.parse(sessionStorage.getItem(key) || "null"); if (hit) return hit; } catch {}
@@ -67,7 +68,8 @@ async function daily(sym) {
   }
   if (!data || !data.length) throw Object.assign(new Error("no data"), { unknown: unknown >= 2 });
   const v = { src, candles: data };
-  try { sessionStorage.setItem(key, JSON.stringify(v)); } catch {}
+  // în primele minute după 00:00 UTC bursa poate să nu aibă încă ziua de ieri; atunci nu păstrăm datele
+  if (data[data.length - 1].t >= lastClosedDay()) try { sessionStorage.setItem(key, JSON.stringify(v)); } catch {}
   return v;
 }
 
@@ -164,7 +166,8 @@ function draw() {
   k("trend-note").textContent = `${a.dist200 > 0 ? "above" : "below"} 200-day avg, ${a.mom30 > 0 ? "up" : "down"} ${sgn(Math.abs(a.mom30), 0).replace("+", "")} in 30 days`;
     k("chart").innerHTML = chart(a);
   k("why").innerHTML = why(a, coin, hl);
-  k("updated").textContent = `Based on ${num(a.days)} daily closes from ${cur.src}, the last one on ${fmtDay(a.at)} at ${price(a.price)}. The reading changes once a day, after 00:00 UTC.`;
+  k("updated").innerHTML = `${esc(`Based on ${num(a.days)} daily closes from ${cur.src}, the last one on ${fmtDay(a.at)} at ${price(a.price)}.`)} <span data-k="next"></span>`;
+  tick();
   record();
 }
 
@@ -196,6 +199,24 @@ async function load(s) {
   if (s === "BTC" && h === 7) u.search = "";
   history.replaceState(null, "", u);
 }
+
+// Numărătoarea până la citirea următoare; la 00:00 UTC pagina se actualizează singură
+let retryAt = 0;
+function tick() {
+  const el = k("next");
+  if (!cur || !el) return;
+  const now = Date.now(), next = Math.floor(now / D) * D + D;
+  const last = cur.candles[cur.candles.length - 1].t;
+  if (last < lastClosedDay() - D) { el.textContent = ""; return; } // monedă care nu se mai tranzacționează
+  if (last < lastClosedDay()) {
+    el.textContent = "A new day has closed, updating the reading…";
+    if (now >= retryAt) { retryAt = now + 120000; logP = null; load(sym); }
+    return;
+  }
+  const m = Math.ceil((next - now) / 60000);
+  el.textContent = `Next reading in ${m >= 60 ? `${Math.floor(m / 60)}h ${m % 60}m` : `${m}m`}, after the daily close at 00:00 UTC. The page updates by itself.`;
+}
+setInterval(tick, 30000);
 
 // ---------------------------------------------------------------------------
 // Jurnalul public (scris zilnic de .github/snapshot.mjs în /data/ta-log.json)
