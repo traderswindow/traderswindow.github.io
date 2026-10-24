@@ -6,6 +6,9 @@
 // Ieșire: starea de azi + statistica istorică pentru orizontul h (zile).
 
 export const COINS = ["BTC", "ETH", "SOL", "XRP", "BNB", "DOGE", "ADA", "TRX", "AVAX", "LINK", "SUI", "TON", "DOT", "LTC", "BCH", "NEAR", "APT", "UNI", "AAVE", "PEPE"];
+export const NAMES = { BTC: "Bitcoin", ETH: "Ethereum", SOL: "Solana", XRP: "XRP", BNB: "BNB", DOGE: "Dogecoin", ADA: "Cardano", TRX: "TRON", AVAX: "Avalanche", LINK: "Chainlink", SUI: "Sui", TON: "Toncoin", DOT: "Polkadot", LTC: "Litecoin", BCH: "Bitcoin Cash", NEAR: "NEAR", APT: "Aptos", UNI: "Uniswap", AAVE: "Aave", PEPE: "Pepe" };
+// adresa paginii fiecărei monede: /tools/crypto-technical-analysis/<slug>/
+export const coinSlug = (sym) => NAMES[sym].toLowerCase().replace(/ /g, "-");
 export const HORIZONS = [7, 30];
 export const WARMUP = 200; // zile necesare pentru media de 200 de zile
 export const MIN_CASES = 20; // sub atâtea cazuri independente nu dăm verdict

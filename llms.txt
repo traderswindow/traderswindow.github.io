@@ -5,15 +5,15 @@
 The tools load public data straight from Binance, alternative.me and CoinPaprika in the visitor's browser. A written summary of the market is added to each tool page every day around 06:00 UTC, with the date, so the numbers below can be quoted with that date.
 
 <!--snap-->
-## Crypto market on 24 Oct 2026 (06:37 UTC)
+## Crypto market on 24 Oct 2026 (16:15 UTC)
 
-- Bitcoin is at $80,780 (−1.3% in 24 hours) and Ethereum at $2,379 (−1.1%).
+- Bitcoin is at $79,831 (−2.1% in 24 hours) and Ethereum at $2,308 (−4.0%).
 - The Crypto Fear and Greed Index is 51 (Neutral), compared with 50 yesterday, 55 a week ago, 71 a month ago.
-- Bitcoin dominance is 57.4% and the total crypto market is worth $2.83 trillion (−1.3% in 24 hours).
-- The altcoin season index is 62: 31 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's not altcoin season yet (that takes 75).
-- BTC funding on Binance is −0.0013% every 8 hours (−1.5% a year), so shorts pay longs. ETH funding is +0.0019%.
-- BTC open interest on Binance is $7.63 billion, −4.2% in 24 hours.
-- 60.2% of Binance accounts holding a BTC futures position are long (long/short ratio 1.51).
+- Bitcoin dominance is 57.5% and the total crypto market is worth $2.78 trillion (−2.6% in 24 hours).
+- The altcoin season index is 60: 30 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's not altcoin season yet (that takes 75).
+- BTC funding on Binance is +0.0006% every 8 hours (+0.7% a year), so longs pay shorts. ETH funding is −0.0012%.
+- BTC open interest on Binance is $7.59 billion, +0.4% in 24 hours.
+- 69.0% of Binance accounts holding a BTC futures position are long (long/short ratio 2.23).
 - Next: FOMC rate decision, Wed 28 Oct at 18:00 UTC (in 4 days). After that: US jobs report (NFP) on Fri 6 Nov; US CPI inflation on Tue 10 Nov; US jobs report (NFP) on Fri 4 Dec.
 - Technical readings for the next 7 days, from the daily close of 23 Oct 2026: Bitcoin Sideways (higher 7 days later in 46% of 489 similar days, 53% on an ordinary day; likely range −4.9% to +6.1%); Ethereum Sideways (higher 7 days later in 45% of 469 similar days, 51% on an ordinary day; likely range −6.8% to +8.4%). Other coins: Solana sideways, XRP no clear direction, BNB sideways, Dogecoin no clear direction, Cardano no clear direction, TRON leaning up, Avalanche no clear direction, Chainlink leaning down, Sui no clear direction, Toncoin not enough history, Polkadot leaning down, Litecoin no clear direction, Bitcoin Cash no clear direction, NEAR no clear direction, Aptos no clear direction, Uniswap no clear direction, Aave sideways, Pepe no clear direction.
 <!--/snap-->
@@ -29,6 +29,7 @@ The tools load public data straight from Binance, alternative.me and CoinPaprika
 - [Altcoin season index](https://traderswindow.github.io/tools/altcoin-season-index/): Is it altcoin season? A live index of how many of the top 50 altcoins beat Bitcoin over the last 90 days, plus Bitcoin dominance and the total crypto market cap.
 - [Crypto economic calendar](https://traderswindow.github.io/tools/crypto-economic-calendar/): The scheduled events that move Bitcoin: FOMC rate decisions, US CPI inflation, the jobs report and BTC options expiry, with countdowns in your time zone and a calendar you can subscribe to.
 - [Crypto market hours](https://traderswindow.github.io/tools/crypto-market-hours/): Crypto trades 24/7, but its volume follows the stock markets. See which sessions are open right now, in your time zone: Tokyo, London, New York and CME Bitcoin futures.
+- Technical analysis for each coin, updated daily: [Bitcoin](https://traderswindow.github.io/tools/crypto-technical-analysis/bitcoin/), [Ethereum](https://traderswindow.github.io/tools/crypto-technical-analysis/ethereum/), [Solana](https://traderswindow.github.io/tools/crypto-technical-analysis/solana/), [XRP](https://traderswindow.github.io/tools/crypto-technical-analysis/xrp/), [BNB](https://traderswindow.github.io/tools/crypto-technical-analysis/bnb/), [Dogecoin](https://traderswindow.github.io/tools/crypto-technical-analysis/dogecoin/), [Cardano](https://traderswindow.github.io/tools/crypto-technical-analysis/cardano/), [TRON](https://traderswindow.github.io/tools/crypto-technical-analysis/tron/), [Avalanche](https://traderswindow.github.io/tools/crypto-technical-analysis/avalanche/), [Chainlink](https://traderswindow.github.io/tools/crypto-technical-analysis/chainlink/), [Sui](https://traderswindow.github.io/tools/crypto-technical-analysis/sui/), [Toncoin](https://traderswindow.github.io/tools/crypto-technical-analysis/toncoin/), [Polkadot](https://traderswindow.github.io/tools/crypto-technical-analysis/polkadot/), [Litecoin](https://traderswindow.github.io/tools/crypto-technical-analysis/litecoin/), [Bitcoin Cash](https://traderswindow.github.io/tools/crypto-technical-analysis/bitcoin-cash/), [NEAR](https://traderswindow.github.io/tools/crypto-technical-analysis/near/), [Aptos](https://traderswindow.github.io/tools/crypto-technical-analysis/aptos/), [Uniswap](https://traderswindow.github.io/tools/crypto-technical-analysis/uniswap/), [Aave](https://traderswindow.github.io/tools/crypto-technical-analysis/aave/), [Pepe](https://traderswindow.github.io/tools/crypto-technical-analysis/pepe/)
 
 ## Guides
 

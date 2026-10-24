@@ -1,5 +1,5 @@
 // Pagina /tools/crypto-technical-analysis/: alegi moneda, vezi statistica istorică (calculul e în ta-core.js).
-import { COINS, analyze, dayKey } from "./ta-core.js";
+import { COINS, NAMES, analyze, coinSlug, dayKey } from "./ta-core.js";
 
 const root = document.querySelector('[data-tool="ta"]');
 const $ = (sel, r = document) => r.querySelector(sel);
@@ -8,7 +8,6 @@ const k = (name) => $(`[data-k="${name}"]`, root);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
 const setPressed = (btns, on) => btns.forEach((b) => b.setAttribute("aria-pressed", String(b === on)));
 
-const NAMES = { BTC: "Bitcoin", ETH: "Ethereum", SOL: "Solana", XRP: "XRP", BNB: "BNB", DOGE: "Dogecoin", ADA: "Cardano", TRX: "TRON", AVAX: "Avalanche", LINK: "Chainlink", SUI: "Sui", TON: "Toncoin", DOT: "Polkadot", LTC: "Litecoin", BCH: "Bitcoin Cash", NEAR: "NEAR", APT: "Aptos", UNI: "Uniswap", AAVE: "Aave", PEPE: "Pepe" };
 const name = (s) => NAMES[s] || s;
 const D = 864e5;
 const START = Date.UTC(2017, 0, 1);
@@ -194,9 +193,8 @@ async function load(s) {
     msg.textContent = e.unknown ? `${s} doesn't trade against USDT on Binance, so there's no history to analyze.` : "Couldn't load the price history from Binance or Coinbase. Try again in a minute.";
   }
   const u = new URL(location.href);
-  u.searchParams.set("coin", s);
+  if (s === root.dataset.coin || (!root.dataset.coin && s === "BTC")) u.searchParams.delete("coin"); else u.searchParams.set("coin", s);
   if (h === 7) u.searchParams.delete("days"); else u.searchParams.set("days", h);
-  if (s === "BTC" && h === 7) u.search = "";
   history.replaceState(null, "", u);
 }
 
@@ -254,12 +252,13 @@ if (root) {
   const q = new URLSearchParams(location.search);
   const qc = (q.get("coin") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
   if (q.get("days") === "30") h = 30;
-  k("coins").innerHTML = COINS.map((c) => `<button type="button" data-pick="${c}" aria-pressed="false">${c}</button>`).join("");
   setPressed($$("[data-h]", root), $(`[data-h="${h}"]`, root));
-  const choose = (c) => { setPressed($$("[data-pick]", root), $(`[data-pick="${c}"]`, root)); if (!COINS.includes(c)) k("sym").value = c; else k("sym").value = ""; load(c); };
+  const mark = (c) => $$("[data-pick]", root).forEach((a) => (a.dataset.pick === c ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current")));
+  const choose = (c) => { mark(c); k("sym").value = COINS.includes(c) ? "" : c; load(c); };
   root.addEventListener("click", (e) => {
-    const p = e.target.closest("[data-pick]");
-    if (p) choose(p.dataset.pick);
+    // monedele sunt linkuri spre pagina lor; păstrăm alegerea de 30 de zile
+    const a = e.target.closest("a[data-pick]");
+    if (a && h === 30 && !e.metaKey && !e.ctrlKey) { e.preventDefault(); location.href = `${a.getAttribute("href")}?days=30`; }
     const b = e.target.closest("[data-h]");
     if (b) { h = +b.dataset.h; setPressed($$("[data-h]", root), b); load(sym); }
   });
@@ -267,7 +266,10 @@ if (root) {
   addEventListener("resize", () => { if (innerWidth === lastW) return; lastW = innerWidth; clearTimeout(rt); rt = setTimeout(draw, 200); });
   k("sym").addEventListener("change", (e) => {
     const v = e.target.value.trim().toUpperCase().replace(/USDT$/, "").replace(/[^A-Z0-9]/g, "");
-    if (v) choose(v);
+    if (!v) return;
+    if (COINS.includes(v)) location.href = `/tools/crypto-technical-analysis/${coinSlug(v)}/${h === 30 ? "?days=30" : ""}`;
+    else if (root.dataset.coin) location.href = `/tools/crypto-technical-analysis/?coin=${v}${h === 30 ? "&days=30" : ""}`;
+    else choose(v);
   });
-  choose(qc || "BTC");
+  choose(root.dataset.coin || qc || "BTC");
 }

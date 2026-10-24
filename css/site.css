@@ -718,3 +718,7 @@ table.data td small { color: var(--muted); font-size: 0.78rem; }
 .ta-why li.up::before { background: var(--up); } .ta-why li.down::before { background: var(--down); }
 .ta-why li.up, .ta-why li.down { color: var(--paper); }
 @media (max-width: 760px) { .ta-top { grid-template-columns: 1fr; } }
+.seg a { font: 500 0.9rem/1 var(--body); color: #b8c0c9; border-radius: 6px; padding: 9px 13px; text-decoration: none; }
+.seg a:hover { color: var(--paper); }
+.seg a[aria-current="page"] { background: rgba(0, 240, 255, 0.14); color: var(--cyan); }
+.ta-table td:first-child a { font-weight: 600; text-decoration: none; }

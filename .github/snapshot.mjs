@@ -124,7 +124,7 @@ async function technical() {
       coins[s] = {};
       for (const h of TA.HORIZONS) {
         const a = TA.analyze(res[j], h);
-        if (a.ok) coins[s][h] = { v: a.verdict, p: a.p, base: a.base, cases: a.cases, indep: a.indep, lo: a.lo, hi: a.hi, price: a.price, trend: a.trend, at: a.at };
+        if (a.ok) coins[s][h] = { v: a.verdict, p: a.p, base: a.base, cases: a.cases, indep: a.indep, lo: a.lo, hi: a.hi, price: a.price, trend: a.trend, at: a.at, dist200: a.dist200, mom30: a.mom30 };
       }
     });
   }
@@ -188,20 +188,42 @@ const calLine = (ev) => {
 };
 
 const TA_LABEL = { up: "Leaning up", down: "Leaning down", side: "Sideways", none: "No clear direction", few: "Not enough history" };
-const TA_NAME = { BTC: "Bitcoin", ETH: "Ethereum", SOL: "Solana", XRP: "XRP", BNB: "BNB", DOGE: "Dogecoin", ADA: "Cardano", TRX: "TRON", AVAX: "Avalanche", LINK: "Chainlink", SUI: "Sui", TON: "Toncoin", DOT: "Polkadot", LTC: "Litecoin", BCH: "Bitcoin Cash", NEAR: "NEAR", APT: "Aptos", UNI: "Uniswap", AAVE: "Aave", PEPE: "Pepe" };
 const pc = (x) => `${Math.round(x * 100)}%`;
 const rng = (a) => `${sign((a.lo / a.price - 1) * 100, 1)}% to ${sign((a.hi / a.price - 1) * 100, 1)}%`;
-const taOne = (s, a) => {
-  const n = TA_NAME[s] || s;
-  if (a.v === "up" || a.v === "down" || a.v === "side" || a.v === "none") return `${n} <b>${TA_LABEL[a.v]}</b> (higher 7 days later in ${pc(a.p)} of ${a.cases.toLocaleString("en-US")} similar days, ${pc(a.base)} on an ordinary day; likely range ${rng(a)})`;
-  return `${n} <b>${TA_LABEL[a.v]}</b>`;
-};
+const taUrl = (s) => `/tools/crypto-technical-analysis/${TA.coinSlug(s)}/`;
+const taLink = (s) => `<a href="${taUrl(s)}">${TA.NAMES[s] || s}</a>`;
+const px = (v) => `$${v.toLocaleString("en-US", { maximumFractionDigits: v >= 1000 ? 0 : v >= 1 ? 2 : v >= 0.01 ? 4 : 8 })}`;
+const scored = (a) => a.v !== "few";
+const taOne = (s, a) => scored(a)
+  ? `${taLink(s)} <b>${TA_LABEL[a.v]}</b> (higher 7 days later in ${pc(a.p)} of ${a.cases.toLocaleString("en-US")} similar days, ${pc(a.base)} on an ordinary day; likely range ${rng(a)})`
+  : `${taLink(s)} <b>${TA_LABEL[a.v]}</b>`;
 const taLine = (T) => {
   const w = (s) => T.coins[s] && T.coins[s][7];
   const main = ["BTC", "ETH"].filter(w).map((s) => taOne(s, w(s)));
-  const rest = Object.keys(T.coins).filter((s) => s !== "BTC" && s !== "ETH" && w(s)).map((s) => `${TA_NAME[s] || s} ${TA_LABEL[w(s).v].toLowerCase()}`);
+  const rest = Object.keys(T.coins).filter((s) => s !== "BTC" && s !== "ETH" && w(s)).map((s) => `${taLink(s)} ${TA_LABEL[w(s).v].toLowerCase()}`);
   const at = w("BTC") ? w("BTC").at : T.at;
   return `Technical readings for the next 7 days, from the daily close of ${day(at)}: ${main.join("; ")}.${rest.length ? ` Other coins: ${rest.join(", ")}.` : ""}`;
+};
+// textul zilei pe pagina fiecărei monede
+const TREND_TXT = { up: "an uptrend", down: "a downtrend", mixed: "a mixed trend" };
+const taHorizon = (a, h) => scored(a)
+  ? `<b>${TA_LABEL[a.v]}</b> (higher ${h} days later in ${pc(a.p)} of ${a.cases.toLocaleString("en-US")} similar days, ${pc(a.base)} on an ordinary day; likely range ${rng(a)}, ${px(a.lo)} to ${px(a.hi)})`
+  : `<b>${TA_LABEL[a.v]}</b> (only ${a.indep} separate past cases like today)`;
+const taCoinLines = (s, c) => {
+  const n = TA.NAMES[s], a = c[7] || c[30];
+  if (!a) return [];
+  return [
+    `From the daily close of ${day(a.at)}, when ${n} closed at <b>${px(a.price)}</b>: the reading for the next 7 days is ${c[7] ? taHorizon(c[7], 7) : "not available"}; for the next 30 days it's ${c[30] ? taHorizon(c[30], 30) : "not available"}.`,
+    `${n} is in ${TREND_TXT[a.trend]}: the price is ${sign(Math.abs(a.dist200) * 100, 1).replace("+", "")}% ${a.dist200 >= 0 ? "above" : "below"} its 200-day average and ${sign(a.mom30 * 100, 1)}% over the last 30 days.`,
+  ];
+};
+const taTable = (T) => {
+  const rows = TA.COINS.filter((s) => T.coins[s] && T.coins[s][7]).map((s) => {
+    const a = T.coins[s][7], b = T.coins[s][30];
+    const cl = (x) => (x && x.v === "up" ? "up" : x && x.v === "down" ? "down" : "");
+    return `<tr><td>${taLink(s)}</td><td class="${cl(a)}">${TA_LABEL[a.v]}</td><td class="r num">${scored(a) ? pc(a.p) : "—"}</td><td class="r num">${rng(a)}</td><td class="${cl(b)}">${b ? TA_LABEL[b.v] : "—"}</td><td class="${a.trend === "mixed" ? "" : a.trend}">${a.trend === "up" ? "Uptrend" : a.trend === "down" ? "Downtrend" : "Mixed"}</td></tr>`;
+  }).join("");
+  return `<div class="tbl-wrap"><table class="data ta-table"><thead><tr><th scope="col">Coin</th><th scope="col">Next 7 days</th><th scope="col" class="r">Higher after 7 days</th><th scope="col" class="r">Likely 7-day range</th><th scope="col">Next 30 days</th><th scope="col">Trend</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 };
 
 // ---------------------------------------------------------------------------
@@ -230,7 +252,10 @@ const lines = {
   ls: D.futures && lsLine(D.futures),
   cal: calLine(D.events),
   ta: D.ta && taLine(D.ta),
+  tatable: D.ta && taTable(D.ta),
 };
+const taCoinKeys = {};
+if (D.ta) for (const [s, c] of Object.entries(D.ta.coins)) taCoinLines(s, c).forEach((l, i) => { lines[`ta_${s}_${i}`] = l; (taCoinKeys[`ta_${s}`] ||= []).push(`ta_${s}_${i}`); });
 // ce apare pe fiecare pagină
 const BLOCKS = {
   today: ["px", "fng", "mkt", "alt", "fund", "oi", "ls", "cal", "ta"],
@@ -241,11 +266,13 @@ const BLOCKS = {
   ls: ["ls", "fund"],
   cal: ["cal"],
   ta: ["ta", "px"],
+  tatable: ["tatable"],
+  ...taCoinKeys,
 };
 const stamp = `<p class="snap-h">Snapshot of <time datetime="${new Date(NOW).toISOString()}">${day(NOW)}, ${hm(NOW)} UTC</time>. Written every morning; the live numbers on this page refresh on their own.</p>`;
 const block = (key) => {
   const ps = BLOCKS[key].map((k) => lines[k]).filter(Boolean);
-  return ps.length ? `<div class="snap">${stamp}${ps.map((p) => `<p>${p}</p>`).join("")}</div>` : "";
+  return ps.length ? `<div class="snap">${stamp}${ps.map((p) => (p.startsWith("<div") ? p : `<p>${p}</p>`)).join("")}</div>` : "";
 };
 
 // Răspunsurile din FAQ primesc cifra zilei în față (și în JSON-LD), ex. „As of 15 Oct 2026, ... . The live value ...”
@@ -256,6 +283,15 @@ const FAQ = [
   ["It's shown live on this page:", D.market && `As of ${day(NOW)}, it's ${D.market.dom.toFixed(1)}%.`],
   ["The next date and a live countdown are at the top of this page.", (() => { const f = D.events.find((e) => /FOMC/.test(e.title)); return f && `As of ${day(NOW)}, the next FOMC decision is on ${dayShort(f.t)} at ${hm(f.t)} UTC.`; })()],
   ["Nobody knows, and any site that says it does is guessing.", D.ta && D.ta.coins.BTC && D.ta.coins.BTC[7] && `As of ${day(NOW)}, the 7-day reading for Bitcoin is ${TA_LABEL[D.ta.coins.BTC[7].v]}: in similar setups it was higher 7 days later ${pc(D.ta.coins.BTC[7].p)} of the time, against ${pc(D.ta.coins.BTC[7].base)} on an ordinary day.`],
+  ...(D.ta ? Object.entries(D.ta.coins).flatMap(([s, c]) => {
+    const n = TA.NAMES[s], a = c[7];
+    if (!a) return [];
+    return [
+      [`Nobody can know where ${n} goes next.`, scored(a) && `As of ${day(NOW)}, the 7-day reading for ${n} is ${TA_LABEL[a.v]}: in similar setups it was higher 7 days later ${pc(a.p)} of the time, against ${pc(a.base)} on an ordinary day.`],
+      [`The likely range for ${n} is on this page and changes once a day.`, `As of ${day(NOW)}, it's ${px(a.lo)} to ${px(a.hi)} for the next 7 days (${rng(a)}).`],
+      [`The Trend card on this page shows it for ${n}.`, `As of ${day(NOW)}, ${n} is in ${TREND_TXT[a.trend]}.`],
+    ];
+  }) : []),
   ["The live overview is at the top of this page.", D.market && D.fng && `As of ${day(NOW)}, ${plain(pxLine(D.market))} The Fear and Greed Index is ${D.fng.today.value} (${D.fng.today.label}).`],
 ];
 const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
