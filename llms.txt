@@ -5,14 +5,14 @@
 The tools load public data straight from Binance, alternative.me and CoinPaprika in the visitor's browser. A written summary of the market is added to each tool page every day around 06:00 UTC, with the date, so the numbers below can be quoted with that date.
 
 <!--snap-->
-## Crypto market on 29 Oct 2026 (06:54 UTC)
+## Crypto market on 30 Oct 2026 (06:54 UTC)
 
-- Bitcoin is at $79,974 (−1.1% in 24 hours) and Ethereum at $2,313 (−1.7%).
-- The Crypto Fear and Greed Index is 51 (Neutral), compared with 51 yesterday, 68 a week ago, 73 a month ago.
-- Bitcoin dominance is 57.2% and the total crypto market is worth $2.80 trillion (−0.9% in 24 hours).
-- The altcoin season index is 58: 29 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's not altcoin season yet (that takes 75).
-- Next: US jobs report (NFP), Fri 6 Nov at 13:30 UTC (in 8 days). After that: US CPI inflation on Tue 10 Nov; US jobs report (NFP) on Fri 4 Dec; FOMC rate decision on Wed 9 Dec.
-- Technical readings for the next 7 days, from the daily close of 28 Oct 2026: Bitcoin Sideways (higher 7 days later in 46% of 490 similar days, 53% on an ordinary day; likely range −4.1% to +5.1%); Ethereum Sideways (higher 7 days later in 45% of 474 similar days, 51% on an ordinary day; likely range −5.4% to +6.6%). Other coins: Solana sideways, XRP sideways, BNB sideways, Dogecoin sideways, Cardano sideways, TRON leaning up, Avalanche sideways, Chainlink leaning down, Sui sideways, Toncoin not enough history, Polkadot leaning down, Litecoin no clear direction, Bitcoin Cash no clear direction, NEAR no clear direction, Aptos no clear direction, Uniswap no clear direction, Aave sideways, Pepe no clear direction.
+- Bitcoin is at $78,570 (−1.8% in 24 hours) and Ethereum at $2,251 (−2.7%).
+- The Crypto Fear and Greed Index is 30 (Fear), compared with 51 yesterday, 50 a week ago, 71 a month ago.
+- Bitcoin dominance is 57.2% and the total crypto market is worth $2.76 trillion (−1.7% in 24 hours).
+- The altcoin season index is 52: 26 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's not altcoin season yet (that takes 75).
+- Next: US jobs report (NFP), Fri 6 Nov at 13:30 UTC (in 7 days). After that: US CPI inflation on Tue 10 Nov; US jobs report (NFP) on Fri 4 Dec; FOMC rate decision on Wed 9 Dec.
+- Technical readings for the next 7 days, from the daily close of 29 Oct 2026: Bitcoin Sideways (higher 7 days later in 46% of 491 similar days, 53% on an ordinary day; likely range −5.0% to +6.2%); Ethereum Sideways (higher 7 days later in 45% of 475 similar days, 51% on an ordinary day; likely range −6.3% to +7.7%). Other coins: Solana sideways, XRP no clear direction, BNB no clear direction, Dogecoin sideways, Cardano sideways, TRON no clear direction, Avalanche no clear direction, Chainlink leaning down, Sui sideways, Toncoin not enough history, Polkadot leaning down, Litecoin no clear direction, Bitcoin Cash no clear direction, NEAR no clear direction, Aptos no clear direction, Uniswap no clear direction, Aave sideways, Pepe no clear direction.
 <!--/snap-->
 
 ## Free tools
