@@ -5,14 +5,14 @@
 The tools load public data straight from Binance, alternative.me and CoinPaprika in the visitor's browser. A written summary of the market is added to each tool page every day around 06:00 UTC, with the date, so the numbers below can be quoted with that date.
 
 <!--snap-->
-## Crypto market on 6 Nov 2026 (14:09 UTC)
+## Crypto market on 7 Nov 2026 (12:52 UTC)
 
-- Bitcoin is at $75,545 (−5.1% in 24 hours) and Ethereum at $2,228 (−6.7%).
-- The Crypto Fear and Greed Index is 28 (Fear), compared with 50 yesterday, 30 a week ago, 71 a month ago.
-- Bitcoin dominance is 57.1% and the total crypto market is worth $2.67 trillion (−4.3% in 24 hours).
+- Bitcoin is at $75,893 (−0.2% in 24 hours) and Ethereum at $2,242 (+0.2%).
+- The Crypto Fear and Greed Index is 25 (Extreme Fear), compared with 28 yesterday, 30 a week ago, 64 a month ago.
+- Bitcoin dominance is 57.2% and the total crypto market is worth $2.66 trillion (−0.4% in 24 hours).
 - The altcoin season index is 52: 26 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's not altcoin season yet (that takes 75).
-- Next: US CPI inflation, Tue 10 Nov at 13:30 UTC (in 4 days). After that: US jobs report (NFP) on Fri 4 Dec; FOMC rate decision on Wed 9 Dec; US CPI inflation on Thu 10 Dec.
-- Technical readings for the next 7 days, from the daily close of 5 Nov 2026: Bitcoin No clear direction (higher 7 days later in 45% of 498 similar days, 53% on an ordinary day; likely range −6.7% to +8.5%); Ethereum No clear direction (higher 7 days later in 44% of 482 similar days, 51% on an ordinary day; likely range −9.1% to +11.5%). Other coins: Solana sideways, XRP no clear direction, BNB no clear direction, Dogecoin no clear direction, Cardano sideways, TRON leaning up, Avalanche sideways, Chainlink leaning down, Sui no clear direction, Toncoin not enough history, Polkadot leaning down, Litecoin no clear direction, Bitcoin Cash no clear direction, NEAR no clear direction, Aptos no clear direction, Uniswap no clear direction, Aave no clear direction, Pepe no clear direction.
+- Next: US CPI inflation, Tue 10 Nov at 13:30 UTC (in 3 days). After that: US jobs report (NFP) on Fri 4 Dec; FOMC rate decision on Wed 9 Dec; US CPI inflation on Thu 10 Dec.
+- Technical readings for the next 7 days, from the daily close of 6 Nov 2026: Bitcoin No clear direction (higher 7 days later in 45% of 499 similar days, 52% on an ordinary day; likely range −6.7% to +8.5%); Ethereum No clear direction (higher 7 days later in 44% of 483 similar days, 51% on an ordinary day; likely range −9.1% to +11.5%). Other coins: Solana sideways, XRP no clear direction, BNB no clear direction, Dogecoin no clear direction, Cardano sideways, TRON leaning up, Avalanche sideways, Chainlink leaning down, Sui no clear direction, Toncoin not enough history, Polkadot leaning down, Litecoin no clear direction, Bitcoin Cash no clear direction, NEAR no clear direction, Aptos no clear direction, Uniswap no clear direction, Aave no clear direction, Pepe no clear direction.
 <!--/snap-->
 
 ## Free tools
