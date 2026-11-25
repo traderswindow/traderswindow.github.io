@@ -5,14 +5,14 @@
 The tools load public data straight from Binance, alternative.me and CoinPaprika in the visitor's browser. A written summary of the market is added to each tool page every day around 06:00 UTC, with the date, so the numbers below can be quoted with that date.
 
 <!--snap-->
-## Crypto market on 24 Nov 2026 (17:31 UTC)
+## Crypto market on 25 Nov 2026 (17:05 UTC)
 
-- Bitcoin is at $59,968 (−2.9% in 24 hours) and Ethereum at $1,683 (−4.2%).
-- The Crypto Fear and Greed Index is 11 (Extreme Fear), compared with 11 yesterday, 12 a week ago, 54 a month ago.
-- Bitcoin dominance is 56.2% and the total crypto market is worth $2.14 trillion (−3.4% in 24 hours).
-- The altcoin season index is 54: 27 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's not altcoin season yet (that takes 75).
-- Next: US jobs report (NFP), Fri 4 Dec at 13:30 UTC (in 10 days). After that: FOMC rate decision on Wed 9 Dec; US CPI inflation on Thu 10 Dec; Quarterly BTC & ETH options expiry on Fri 25 Dec.
-- Technical readings for the next 7 days, from the daily close of 23 Nov 2026: Bitcoin No clear direction (higher 7 days later in 53% of 950 similar days, 52% on an ordinary day; likely range −8.8% to +11.3%); Ethereum No clear direction (higher 7 days later in 50% of 1,047 similar days, 51% on an ordinary day; likely range −13.3% to +17.1%). Other coins: Solana no clear direction, XRP no clear direction, BNB no clear direction, Dogecoin no clear direction, Cardano no clear direction, TRON leaning up, Avalanche leaning down, Chainlink no clear direction, Sui no clear direction, Toncoin not enough history, Polkadot leaning down, Litecoin no clear direction, Bitcoin Cash no clear direction, NEAR leaning down, Aptos no clear direction, Uniswap no clear direction, Aave no clear direction, Pepe no clear direction.
+- Bitcoin is at $58,746 (−1.2% in 24 hours) and Ethereum at $1,651 (−1.1%).
+- The Crypto Fear and Greed Index is 13 (Extreme Fear), compared with 11 yesterday, 11 a week ago, 50 a month ago.
+- Bitcoin dominance is 56.0% and the total crypto market is worth $2.10 trillion (−1.5% in 24 hours).
+- The altcoin season index is 52: 26 of the top 50 altcoins did better than Bitcoin over the last 90 days, so it's not altcoin season yet (that takes 75).
+- Next: US jobs report (NFP), Fri 4 Dec at 13:30 UTC (in 9 days). After that: FOMC rate decision on Wed 9 Dec; US CPI inflation on Thu 10 Dec; Quarterly BTC & ETH options expiry on Fri 25 Dec.
+- Technical readings for the next 7 days, from the daily close of 24 Nov 2026: Bitcoin No clear direction (higher 7 days later in 53% of 951 similar days, 52% on an ordinary day; likely range −8.0% to +10.2%); Ethereum No clear direction (higher 7 days later in 50% of 1,048 similar days, 51% on an ordinary day; likely range −11.9% to +15.1%). Other coins: Solana no clear direction, XRP no clear direction, BNB no clear direction, Dogecoin no clear direction, Cardano no clear direction, TRON leaning up, Avalanche leaning down, Chainlink no clear direction, Sui no clear direction, Toncoin not enough history, Polkadot leaning down, Litecoin no clear direction, Bitcoin Cash no clear direction, NEAR leaning down, Aptos no clear direction, Uniswap no clear direction, Aave no clear direction, Pepe no clear direction.
 <!--/snap-->
 
 ## Free tools
